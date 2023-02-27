@@ -1,0 +1,24 @@
+.c-rw-div {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  flex-wrap: wrap;
+}
+.jhv {
+  width: 40%;
+}
+.jbi-foot {
+  width: 80%;
+}
+@media screen and (max-width: 780px) {
+  .jbi-foot {
+    width: 100%;
+  }
+  .c-rw-div {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}

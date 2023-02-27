@@ -1,0 +1,39 @@
+.div-side-h5 {
+  margin-bottom: 5px;
+  font-size: medium;
+  font-weight: 600;
+  color: gray;
+  /* mb-5 text-lg font-semibold text-gray-600 */
+}
+.go-h5 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: large;
+  color: gray;
+}
+.side-display-div {
+  display: flex;
+  justify-content: space-between;
+}
+.div-sider {
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: #212121;
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
+  /* bg-secondary text-white flex center px-2 py-0.5 rounded-md */
+}
+.download-div {
+  color: gray;
+  font-size: 12px;
+  font-weight: 300;
+}
+.text-field-in {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 8vh;
+}

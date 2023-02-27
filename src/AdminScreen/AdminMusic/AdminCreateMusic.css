@@ -1,0 +1,39 @@
+.input-label-input-divs {
+  width: 460px;
+}
+@media (max-width: 1420px) {
+  .input-label-input-divs {
+    width: 360px;
+  }
+}
+@media (max-width: 1400px) {
+  .input-label-input-divs {
+    width: 370px;
+  }
+}
+@media (max-width: 1200px) {
+  .input-label-input-divs {
+    width: 350px;
+  }
+}
+@media (max-width: 980px) {
+  .input-label-input-divs {
+    width: 360px;
+  }
+}
+
+@media (max-width: 770px) {
+  .input-label-input-divs {
+    width: inherit;
+  }
+}
+@media (max-width: 760px) {
+  .input-label-input-divs {
+    width: 400px;
+  }
+}
+@media (max-width: 480px) {
+  .input-label-input-divs {
+    width: 210px;
+  }
+}

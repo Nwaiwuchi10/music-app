@@ -1,0 +1,16 @@
+.recomend-main-div {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 5px;
+}
+@media screen and (max-width: 768px) {
+  .recomend-main-div {
+    gap: 30px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .recomend-main-div {
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+  }
+}
