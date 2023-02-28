@@ -95,24 +95,11 @@ function Header(props) {
                 display: { sm: "none" },
               }}
             >
-              {/* <Typography
-                variant="h6"
-                component="div"
-                // sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-              >
-                NowMusic
-              </Typography> */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "flex-end",
-                }}
-              >
-                {" "}
-                <MenuIcon />
-              </div>
+              <MenuIcon />
             </IconButton>
+            <Typography variant="h6" component="div" className="now-music-sm">
+              NowMusic
+            </Typography>
             <Typography
               variant="h6"
               component="div"

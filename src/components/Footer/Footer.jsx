@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 const Footer = () => {
   return (
@@ -81,24 +82,24 @@ const Footer = () => {
                     }}
                   />
                   <p>
-                    <a href="#!" class="text-dark">
+                    <Link to="/" class="text-dark text-decoration-none">
                       Home
-                    </a>
+                    </Link>
                   </p>
                   <p>
-                    <a href="#!" class="text-dark">
+                    <Link to="/" class="text-dark text-decoration-none">
                       News
-                    </a>
+                    </Link>
                   </p>
                   <p>
-                    <a href="#!" class="text-dark">
+                    <Link to="#!" class="text-dark text-decoration-none">
                       About Us
-                    </a>
+                    </Link>
                   </p>
                   <p>
-                    <a href="#!" class="text-dark">
+                    <Link to class="text-dark text-decoration-none">
                       Genre
-                    </a>
+                    </Link>
                   </p>
                 </div>
                 {/* <!-- Grid column --> */}
@@ -143,7 +144,9 @@ const Footer = () => {
           {/* <!-- Copyright --> */}
           <div class="text-center p-3" style={{ backgroundColor: "white" }}>
             © 2023 Copyright:
-            <a class="text-dark">NowMusic</a>
+            <Link to="/" class="text-dark text-decoration-none">
+              NowMusic
+            </Link>
           </div>
           {/* <!-- Copyright --> */}
         </footer>

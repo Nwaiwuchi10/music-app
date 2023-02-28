@@ -1,4 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import CircularIndeterminate from "../../components/Loading/Progress";
 import { musicAllApi } from "../../data/Apis";
@@ -19,6 +25,7 @@ const AdminCreateMusic = () => {
   const [genre, setGenre] = useState("");
   const [category, setCategory] = useState("");
   const [filepath, setFilepath] = useState("");
+  const [recommendSong, setRecommendSong] = useState("");
   const [album, setAlbum] = useState("");
   const [year, setYear] = useState("");
   const [loading, setLoading] = useState(false);
@@ -71,6 +78,7 @@ const AdminCreateMusic = () => {
       album: album,
       genre: genre,
       filepath: filepath,
+      recommendSong: recommendSong,
       category: category,
       brand: brand,
       year: year,
@@ -97,6 +105,7 @@ const AdminCreateMusic = () => {
           setBrand("");
           setArtist("");
           setFilepath("");
+          setRecommendSong("");
           setAlbum("");
           setCategory("");
           setImage("");
@@ -179,7 +188,7 @@ const AdminCreateMusic = () => {
                         required
                         rows={4}
                         id="outlined-required"
-                        label="Brand "
+                        label="Brand Name or Record Label "
                         type="text"
                         value={brand}
                         onChange={(e) => setBrand(e.target.value)}
@@ -258,6 +267,23 @@ const AdminCreateMusic = () => {
                       />
                     </div>
                     <div className="col-md-6 mb-4">
+                      <FormGroup>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              defaultChecked
+                              checked={recommendSong}
+                              onChange={(e) =>
+                                setRecommendSong(e.target.checked)
+                              }
+                            />
+                          }
+                          label="Recomend Song"
+                        />
+                      </FormGroup>
+                    </div>
+                    <div className="col-md-6 mb-4">
+                      <label className="">Cover Photo</label>
                       <TextField
                         className="input-label-input-divs"
                         required
@@ -270,6 +296,7 @@ const AdminCreateMusic = () => {
                       />
                     </div>
                     <div className="col-md-6 mb-4">
+                      <label className="">Music File</label>
                       <TextField
                         className="input-label-input-divs"
                         required

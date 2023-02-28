@@ -9,12 +9,28 @@ import Message from "../Messages/Message";
 import "./Trends.css";
 import Loader from "../../components/Loading/Loader";
 import { Link } from "react-router-dom";
+import { Pagination } from "@mui/material";
 const Trends = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [poster, setPoster] = useState([]);
   const [filtered, setFiltered] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
-
+  function handlePageChange(newPage) {
+    setCurrentPage(newPage);
+  }
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const post = poster
+    ?.filter((value) => {
+      if (filtered === "Team Player") {
+        return value;
+      } else if (value.category === "TRENDING") {
+        return value;
+      }
+    })
+    .slice(indexOfFirstItem, indexOfLastItem);
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(getMusicApi);
@@ -62,30 +78,36 @@ const Trends = () => {
           <Message variant="danger">{error}</Message>
         ) : (
           <div className="trends-div-plus">
-            {poster
-              ?.filter((value) => {
-                if (filtered === "Team Player") {
-                  return value;
-                } else if (value.category === "TRENDING") {
-                  return value;
-                }
-              })
-              .map((item, i) => (
-                <div className="" key={i}>
-                  <div className="mb-4">
-                    <Link
-                      to={`/mp3-download/${item._id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <CardLarge
-                        cover={item.image}
-                        name={item.artist}
-                        tag={item.title}
-                      />
-                    </Link>
-                  </div>
+            {post.map((item, i) => (
+              <div className="" key={i}>
+                <div className="mb-4">
+                  <Link
+                    to={`/mp3-download/${item._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <CardLarge
+                      cover={item.image}
+                      name={item.artist}
+                      tag={item.title}
+                    />
+                  </Link>
                 </div>
-              ))}
+              </div>
+            ))}
+            <div>
+              <Pagination
+                count={10}
+                variant="outlined"
+                shape="rounded"
+                onClick={() => handlePageChange(currentPage - 1 && +1)}
+              />
+              {/* <button onClick={() => handlePageChange(currentPage - 1)}>
+                Previous
+              </button>
+              <button onClick={() => handlePageChange(currentPage + 1)}>
+                Next
+              </button> */}
+            </div>
           </div>
         )}
         {/* </Slider> */}

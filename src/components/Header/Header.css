@@ -1,9 +1,17 @@
 .box-header-div {
   margin-bottom: 60px;
 }
+.now-music-sm {
+  display: none;
+}
 @media screen and (max-width: 768px) {
   .box-header-div {
     margin-bottom: 50px;
+  }
+  .now-music-sm {
+    display: flex;
+    justify-content: left;
+    margin-left: 20px;
   }
 }
 @media screen and (max-width: 480px) {
