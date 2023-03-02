@@ -35,3 +35,11 @@
   color: white;
   /* overlay icon absolute top-1/2 left-[40%] text-white  */
 }
+@media screen and (max-width: 768px) {
+  .min-large-card-div {
+    height: 40vh;
+    width: 100%;
+
+    position: relative;
+  }
+}

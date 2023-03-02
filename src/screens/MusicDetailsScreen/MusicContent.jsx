@@ -28,7 +28,7 @@ const MusicContent = () => {
   const handleDownload = () => {
     // You can use the HTML5 `download` attribute to download the MP3 file
     const downloadLink = document.createElement("a");
-    downloadLink.href = mp3Data.url;
+    downloadLink.href = mp3Data?.filepath;
     downloadLink.download = `${mp3Data.title}.mp3`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
@@ -93,7 +93,7 @@ const MusicContent = () => {
               style={{ justifyContent: "center" }}
             >
               {" "}
-              <audio src={mp3Data.filepath} controls />
+              <audio src={mp3Data?.filepath} controls />
             </div>
             <div
               className="d-flex mt-5 mb-5 "

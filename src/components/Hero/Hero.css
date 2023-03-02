@@ -105,6 +105,12 @@
   .img-min2-div {
     margin-bottom: 5px;
   }
+  .div-hero-img {
+    margin-top: 16px;
+    width: 100%;
+    height: 70vh;
+    margin-top: -16px;
+  }
   /* .div-hero-img{
     margin-top: -16px;
     width: 100%;
@@ -114,6 +120,7 @@
   .div-hero-img {
     margin-top: 16px;
     width: 100%;
+    height: 50vh;
   }
   .hero-div-min-sec {
     width: 100%;

@@ -40,7 +40,7 @@ const Recomend = () => {
           <div className="recomend-main-div">
             {poster
               ?.filter((value) => {
-                if (filtered === "Team Player") {
+                if (filtered === "") {
                   return value;
                 } else if (value.recommendSong === "true") {
                   return value;

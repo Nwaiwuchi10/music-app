@@ -24,7 +24,7 @@ const LayoutSideBar = ({ children }) => {
   }, [sidebarTop]);
 
   const isSticky = (e) => {
-    const sidebarEl = document.querySelector(".sidebar");
+    const sidebarEl = document.querySelector(".Sibebar");
     const scrollTop = window.scrollY;
     if (scrollTop >= sidebarTop - 10) {
       sidebarEl.classList.add("is-sticky");

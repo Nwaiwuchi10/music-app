@@ -7,8 +7,11 @@ import { CardLarge } from "../Cards/CardLarge";
 import Message from "../Messages/Message";
 import Loader from "../../components/Loading/Loader";
 import { Link } from "react-router-dom";
-import { Pagination } from "@mui/material";
-const Latest = () => {
+import "../Pagination/Pagination.css";
+import Pagination from "../Pagination/Pagination";
+// import { Pagination } from "@mui/material";
+
+const Latest = ({ totalPosts }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [poster, setPoster] = useState([]);
@@ -30,20 +33,14 @@ const Latest = () => {
 
     fetchPosts();
   }, []);
+
   function handlePageChange(newPage) {
     setCurrentPage(newPage);
   }
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const post = poster
-    ?.filter((value) => {
-      if (filtered === "") {
-        return value;
-      } else if (value.category === "LATEST") {
-        return value;
-      }
-    })
-    .slice(indexOfFirstItem, indexOfLastItem);
+  // const posts = poster?.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
     <>
       <section className="treading hero">
@@ -55,32 +52,46 @@ const Latest = () => {
           <Message variant="danger">{error}</Message>
         ) : (
           <div className="trends-div-plus">
-            {post.map((item, i) => (
-              <div className="" key={i}>
-                <div className="mb-4">
-                  <Link
-                    to={`/mp3-download/${item._id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <CardLarge
-                      cover={item.image}
-                      name={item.artist}
-                      tag={item.title}
-                      style={{ color: "inherit" }}
-                    />
-                  </Link>
+            {poster
+              ?.filter((value) => {
+                if (filtered === "Team Player") {
+                  return value;
+                } else if (value.category === "LATEST") {
+                  return value;
+                }
+              })
+              .map((item, i) => (
+                <div className="" key={i}>
+                  <div className="mb-4">
+                    <Link
+                      to={`/mp3-download/${item._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <CardLarge
+                        cover={item.image}
+                        name={item.artist}
+                        tag={item.title}
+                        style={{ color: "inherit" }}
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            {/* <buton onClick={() => handlePageChange(currentPage - 1)}>
+              previous
+            </buton>
             <Pagination
-              count={10}
-              color="primary"
-              variant="outlined"
-              shape="rounded"
-              onClick={() => handlePageChange(currentPage - 1 && +1)}
+              totalPosts={poster?.length}
+              itemsPerPage={itemsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
             />
+            <button onClick={() => handlePageChange(currentPage + 1)}>
+              next
+            </button> */}
           </div>
         )}
+
         {/* </Slider> */}
       </section>
     </>
