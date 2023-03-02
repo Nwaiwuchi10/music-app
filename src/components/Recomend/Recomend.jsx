@@ -42,11 +42,11 @@ const Recomend = () => {
               ?.filter((value) => {
                 if (filtered === "") {
                   return value;
-                } else if (value.recommendSong === "true") {
+                } else if (value?.recommendSong === "true") {
                   return value;
                 }
               })
-              // .slice(0, 10)
+              .slice(0, 10)
               .map((item, i) => (
                 <CardSmall
                   cover={item.image}

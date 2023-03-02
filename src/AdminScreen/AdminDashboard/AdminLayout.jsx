@@ -95,13 +95,13 @@ function AdminLayout(props) {
 
               <Dropdown.Menu className="drop-d">
                 <Dropdown.Item>
-                  <Link to="/createNews" style={{ textDecoration: "none" }}>
-                    Create News
+                  <Link to="/Nchrys" style={{ textDecoration: "none" }}>
+                    Create Music Blog
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item style={{ color: "#00A36C" }}>
-                  <Link to="/ViewNews" style={{ textDecoration: "none" }}>
-                    View News
+                  <Link to="/ViewMusic" style={{ textDecoration: "none" }}>
+                    View Music
                   </Link>
                 </Dropdown.Item>
               </Dropdown.Menu>
