@@ -29,7 +29,7 @@ const Recomend = () => {
   return (
     <>
       <section className="treading hero ">
-        <h3>Recomended Songs</h3>
+        <h3 className="mb-4">Recomended Songs</h3>
         {/* <Title title="Recommend Songs" style={{ fontSize: "25px" }} /> */}
 
         {loading ? (

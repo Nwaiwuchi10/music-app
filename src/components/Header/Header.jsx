@@ -15,8 +15,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/system";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaVideo } from "react-icons/fa";
+import { GiMusicalScore } from "react-icons/gi";
 import "./Header.css";
+import { Link } from "react-router-dom";
+import { MdPermContactCalendar } from "react-icons/md";
+import { SiHatenabookmark } from "react-icons/si";
 const drawerWidth = 240;
 // const navItems = ["Home", "About", "Contact"];
 
@@ -39,24 +43,50 @@ function Header(props) {
       }}
     >
       <Typography variant="h6" sx={{ my: 2 }}>
-        <FaTimes style={{ cursor: "pointer" }} />
+        <FaTimes
+          style={{
+            cursor: "pointer",
+            marginRight: "90px",
+          }}
+        />
       </Typography>
       <Divider />
-      <List>
+      <List
+        style={{
+          display: "block",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
         <ul
           style={{
             display: "block",
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
+            lineHeight: "50px",
           }}
         >
-          <ListItem>Home</ListItem>
-          <ListItem>Music</ListItem>
-          <ListItem>Videos</ListItem>
-          <ListItem>News</ListItem>
-          <ListItem>About Us</ListItem>
-          <ListItem>Contact Us</ListItem>
+          <ListItem>
+            <GiMusicalScore style={{ marginRight: "5px" }} /> Music
+          </ListItem>
+          <ListItem>
+            {" "}
+            <FaVideo style={{ marginRight: "5px" }} />
+            Videos
+          </ListItem>
+
+          <ListItem>
+            {" "}
+            <SiHatenabookmark style={{ marginRight: "5px" }} />
+            About Us
+          </ListItem>
+          <ListItem>
+            {" "}
+            <MdPermContactCalendar style={{ marginRight: "5px" }} />
+            Contact Us
+          </ListItem>
         </ul>
         {/* {navItems.map((item) => (
           <ListItem key={item} disablePadding>
@@ -97,31 +127,45 @@ function Header(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" className="now-music-sm">
-              NowMusic
-            </Typography>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            >
-              NowMusic
-            </Typography>
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+              <Typography variant="h6" component="div" className="now-music-sm">
+                TodaysMusic
+              </Typography>
+            </Link>
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              >
+                TodaysMusic
+              </Typography>
+            </Link>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               <List>
                 <ul
                   style={{
                     display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+
+                    justifyContent: "flex-end",
+                    alignItems: "flex-end",
+                    textAlign: "right",
                   }}
                 >
-                  <ListItem>Home</ListItem>
                   <ListItem>Music</ListItem>
                   <ListItem>Videos</ListItem>
-                  <ListItem>News</ListItem>
-                  {/* <ListItem>About-Us</ListItem>
-                <ListItem>Contact-Us</ListItem> */}
+
+                  <ListItem>
+                    {" "}
+                    <span>About</span>
+                    <span style={{ marginLeft: "5px" }}>Us</span>
+                  </ListItem>
+
+                  <ListItem>
+                    {" "}
+                    <span>Contact</span>
+                    <span style={{ marginLeft: "5px" }}>Us</span>
+                  </ListItem>
                 </ul>
               </List>
               {/* {navItems.map((item) => (

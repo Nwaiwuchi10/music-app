@@ -1,7 +1,7 @@
 .sm-card-small-main-div {
   display: flex;
   position: relative;
-
+  padding-left: 50px;
   padding: 2px;
 
   cursor: pointer;

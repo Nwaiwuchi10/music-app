@@ -9,10 +9,15 @@ import "./Sidebar.css";
 const Sidebar = () => {
   return (
     <>
-      <section className="sidebar hero ">
-        <h1 className="div-side-h5">5 Likes</h1>
+      <section
+        className="div-sibebar-start"
+        // className="sidebar hero "
+      >
+        <div className="div-side-h5 mt-4 mb-5">
+          <TextField id="outlined-basic" label="Search" variant="outlined" />
+        </div>
         {recommand.slice(0, 5).map((item, i) => (
-          <div className="mb-3" style={{ position: "relative" }}>
+          <div className="mb-3">
             <CardSm cover={item.cover} name={item.name} tag={item.tag} i={i} />
           </div>
         ))}

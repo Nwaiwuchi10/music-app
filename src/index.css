@@ -22,7 +22,7 @@
   opacity: 1;
 }
 
-.is-sticky {
+/* .is-sticky {
   position: fixed;
   top: 20px;
   z-index: 9;
@@ -33,4 +33,4 @@
   .is-sticky {
     position: relative;
   }
-}
+} */

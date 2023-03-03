@@ -15,7 +15,9 @@ const MusicContent = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(`http://localhost:5000/api/music/${id}`);
+      const { data } = await axios.get(
+        `https://todaysmusic.herokuapp.com/api/music/${id}`
+      );
       console.log(data);
       setMp3Data(data);
       setLoading(false);

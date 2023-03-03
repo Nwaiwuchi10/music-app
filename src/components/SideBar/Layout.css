@@ -1,3 +1,13 @@
+.sidebar {
+  position: relative;
+}
+.sidebar.sticky {
+  position: fixed;
+  top: 20px;
+
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+}
+
 .layout-main-div {
   display: flex;
   justify-content: space-between;
@@ -15,14 +25,18 @@
   width: 25%;
   margin-left: 100px;
   margin-right: 10px;
-  /* margin-right: 10px;
-  margin-left: 30px; */
+  height: 85vh;
+
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 10px;
   /* md:w-[25%] border-2 border-solid border-gray-100 rounded-xl p-5 */
 }
 @media screen and (max-width: 768px) {
+  .sidebar.sticky {
+    position: relative;
+    /* top: 0; */
+  }
   .lay-min-div {
     width: 100%;
   }
@@ -32,14 +46,18 @@
   .side-div-layout {
     margin-left: 0px;
     margin-left: 20px;
+    width: 70%;
   }
 }
 @media screen and (max-width: 460px) {
   .side-div-layout {
-    margin-left: 0px;
+    /* margin-left: 0px; */
     display: flex;
-
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
+  }
+  .lay-min-div {
+    width: 100%;
   }
 }

@@ -22,10 +22,15 @@ export const CardLarge = ({ cover, name, tag }) => {
         </div> */}
       </div>
       <div className="text">
-        <h3 className="name-card-big-h">{name}</h3>
-        <span className="name-ard-big-hi" style={{ fontSize: "small" }}>
-          {tag}
-        </span>
+        <h3 className="name-card-big-h ml-2">
+          <span>{name}</span> -
+          <span
+            className="name-ard-big-hi "
+            style={{ fontSize: "small", color: "grey", marginLeft: "2px" }}
+          >
+            {tag}
+          </span>
+        </h3>
       </div>
     </>
   );

@@ -5,6 +5,7 @@
 }
 @media screen and (max-width: 768px) {
   .recomend-main-div {
+    grid-template-columns: repeat(2, 2fr);
     gap: 30px;
   }
 }

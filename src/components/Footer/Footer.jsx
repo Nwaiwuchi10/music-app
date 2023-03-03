@@ -64,7 +64,7 @@ const Footer = () => {
                     }}
                   />
                   <div className="jbi-foot">
-                    NowMusic is your home for African Music
+                    TodaysMusic is your home for African Music
                   </div>
                 </div>
                 {/* <!-- Grid column --> */}
@@ -121,7 +121,7 @@ const Footer = () => {
                     }}
                   />
                   <p>
-                    <i class="fas fa-home mr-3"></i> NowMusic Secretariate:
+                    <i class="fas fa-home mr-3"></i> TodaysMusic Secretariate:
                     Owerri Imo State
                   </p>
                   <p>
@@ -145,7 +145,7 @@ const Footer = () => {
           <div class="text-center p-3" style={{ backgroundColor: "white" }}>
             © 2023 Copyright:
             <Link to="/" class="text-dark text-decoration-none">
-              NowMusic
+              TodaysMusic
             </Link>
           </div>
           {/* <!-- Copyright --> */}
