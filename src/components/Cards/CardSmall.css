@@ -37,4 +37,7 @@
     margin-right: 5px;
     /* img relative h-16 w-16 mr-5 */
   }
+  .card-small-main-div {
+    margin-bottom: 0px;
+  }
 }

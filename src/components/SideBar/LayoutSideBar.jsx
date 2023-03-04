@@ -61,6 +61,7 @@ const LayoutSideBar = ({ children }) => {
           // style={{ width: sidebarWidth }}
         >
           <div
+
           // className={`sidebar ${sticky ? "sticky" : ""}`}
           >
             <Sidebar />

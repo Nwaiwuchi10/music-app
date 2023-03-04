@@ -1,6 +1,6 @@
 .sm-card-small-main-div {
   display: flex;
-  position: relative;
+  /* position: relative; */
   padding-left: 50px;
   padding: 2px;
 
@@ -22,7 +22,7 @@
   border-radius: 10px;
 }
 .sm-img-img-card-small {
-  position: relative;
+  /* position: relative; */
   height: 16%;
   width: 30%;
   margin-right: 5px;

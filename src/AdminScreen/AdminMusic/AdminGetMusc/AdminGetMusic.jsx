@@ -2,22 +2,77 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Message from "../../../components/Messages/Message";
 import { getMusicApi } from "../../../data/Apis";
 import AdminLayout from "../../AdminDashboard/AdminLayout";
 import "./AdminGetMusic.css";
 import Loader from "../../../components/Loading/Loader";
+import CircularIndeterminate from "../../../components/Loading/Progress";
 const AdminGetMusic = () => {
+  const { usery } = useParams();
+  const apiEndPoint = "http://localhost:5000/api/music/delete";
   const navigate = useNavigate();
   const [poster, setPoster] = useState([]);
   const [spanish, setSpanish] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
+  const [deleted, setDeleted] = useState(false);
   const [show, setShow] = useState(false);
+
   const [loadings, setLoadings] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleLoader = () => {
+    setLoadings(true);
+
+    // Perform any other actions that need to be done when the button is clicked
+  };
+  const postDelete = (usery, e) => {
+    e.preventDefault();
+    setLoadings(true);
+    axios
+      .delete(`http://localhost:5000/api/music/delete/${usery.id}`)
+
+      .then((res) => {
+        setLoadings(false);
+        console.log("Deleted!!!", res);
+        // alert("Item has been removed");
+        navigate("/ViewHallOfFame");
+      })
+      .catch((err) => {
+        console.log(err);
+        // alert("Failed to remove");
+      });
+  };
+  const handleDeletes = async (usery, e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/music/delete/${usery?._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        setDeleted(true);
+      } else {
+        throw new Error("Failed to delete item");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleDelete = async (id) => {
+    await axios.delete(
+      `https://todaysmusic.herokuapp.com/api/music/delete/${id}`
+    );
+
+    setPoster(poster.filter((p) => p._id !== usery._id));
+    navigate("/ViewMusic");
+  };
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(getMusicApi);
@@ -83,66 +138,21 @@ const AdminGetMusic = () => {
                         <FaEdit />
                       </Button>
                     </Link>
+
                     <Button
+                      // type="submit"
                       variant="danger"
                       className="btn-sm"
-                      //   onClick={handleShow}
+                      // onSubmit={handleLoader}
+                      onClick={() => handleDelete(usery._id)}
                     >
                       <FaTrash />
                     </Button>
+
+                    {/* {deleted && (
+                      <p className="color-red">Item successfully deleted</p>
+                    )} */}
                   </td>
-                  {/* <Modal
-                    style={{
-                      marginTop: "50px",
-                    }}
-                    show={show}
-                    onHide={handleClose}
-                    backdrop="static"
-                    keyboard={false}
-                  >
-                    <Modal.Header closeButton>
-                      <Modal.Title></Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <div
-                        style={{
-                          display: "block",
-                          justifyContent: "center",
-                          textAlign: "center",
-                        }}
-                      >
-                        <h3>Are you sure?</h3>
-                        <h5
-                          style={{
-                            color: "gray",
-                          }}
-                        >
-                          Do you really want to delete these records? This
-                          process cannot be undone.
-                        </h5>
-                      </div>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <div
-                        style={{
-                          display: "block",
-                          justifyContent: "center",
-                          textAlign: "center",
-                        }}
-                      >
-                        <Button variant="secondary" onClick={handleClose}>
-                          Close
-                        </Button>
-                        {loadings && <CircularIndeterminate />}
-                        <Button
-                          variant="danger"
-                          onClick={(e) => postDelete(usery._id, e)}
-                        >
-                          Delete
-                        </Button>
-                      </div>
-                    </Modal.Footer>
-                  </Modal> */}
                 </tr>
               </>
             ))}

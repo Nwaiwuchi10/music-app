@@ -3,7 +3,7 @@ export const hero1 = [
     id: 1,
     name: "New Album from Nouvelle",
     tag: "Nouvelle",
-    cover: "../images/c1.jpg",
+    cover: "../images/muss.jpg",
   },
   {
     id: 2,

@@ -43,7 +43,7 @@ const MusicContent = () => {
         {mp3Data ? (
           <div>
             <div className="text-center mt-5 mb-5">
-              <h4>
+              <h4 className="ity">
                 {mp3Data.artist}-{mp3Data.title}{" "}
               </h4>
             </div>
