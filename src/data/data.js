@@ -1,20 +1,20 @@
 export const hero1 = [
   {
     id: 1,
-    name: "New Album from Nouvelle",
-    tag: "Nouvelle",
+    name: "Home Of African Music",
+    tag: "Music is life",
     cover: "../images/muss.jpg",
   },
   {
     id: 2,
-    name: "Bind Me",
-    tag: "Fifty",
+    name: "We Update Your Playist ",
+    tag: "With Good Music",
     cover: "../images/c2.jpg",
   },
   {
     id: 3,
-    name: "New Track from Pablo Nouvelle",
-    tag: "Pablo Nouvelle",
+    name: "We Promote Your Music",
+    tag: "To The World",
     cover: "../images/c3.jpg",
   },
 ];

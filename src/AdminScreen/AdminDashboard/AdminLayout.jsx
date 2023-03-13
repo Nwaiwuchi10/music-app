@@ -107,6 +107,42 @@ function AdminLayout(props) {
               </Dropdown.Menu>
             </Dropdown>
           </li>
+          <li style={{ display: "flex" }}>
+            <MdAdminPanelSettings
+              style={{
+                fontSize: "25px",
+                marginTop: "25px",
+                marginBottom: "auto",
+              }}
+            />
+            <Dropdown>
+              <Dropdown.Toggle
+                id="dropdown-basic"
+                className="borde-drop"
+                style={{
+                  backgroundColor: "inherit",
+                  border: "#228B22",
+                  fontSize: "large",
+                  fontWeight: "600",
+                }}
+              >
+                VIDEO
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className="drop-d">
+                <Dropdown.Item>
+                  <Link to="/CreateVideo" style={{ textDecoration: "none" }}>
+                    Create Video Blog
+                  </Link>
+                </Dropdown.Item>
+                <Dropdown.Item style={{ color: "#00A36C" }}>
+                  <Link to="/ViewVideo" style={{ textDecoration: "none" }}>
+                    View Video
+                  </Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </li>
         </ul>
       </List>
       <Divider />

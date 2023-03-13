@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { hero1, hero2 } from "../../data/data";
-import { getMusicApi } from "../../data/Apis";
+import { getMusicApi, getMusicVideoApi } from "../../data/Apis";
 import Message from "../Messages/Message";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -48,7 +48,7 @@ export const Hero = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicApi);
+      const { data } = await axios.get(getMusicVideoApi);
       console.log(data);
       setPoster(data);
       setLoading(false);
@@ -97,7 +97,7 @@ export const Hero = () => {
             {poster?.slice(0, 4).map((item) => (
               <div className="box hero-min2-div " key={item.id}>
                 <Link
-                  to={`/mp3-download/${item._id}`}
+                  to={`/mp4-download/${item._id}`}
                   style={{ textDecoration: "none" }}
                 >
                   <img src={item.image} alt="cover" className="img-min2-div" />

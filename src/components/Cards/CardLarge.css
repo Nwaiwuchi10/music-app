@@ -35,6 +35,15 @@
   color: white;
   /* overlay icon absolute top-1/2 left-[40%] text-white  */
 }
+.big-card-hov-large2 {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  left: 40%;
+  color: white;
+}
+
 @media screen and (max-width: 768px) {
   .min-large-card-div {
     height: 40vh;

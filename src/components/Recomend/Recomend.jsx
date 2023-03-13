@@ -29,7 +29,7 @@ const Recomend = () => {
   return (
     <>
       <section className="treading hero ">
-        <h3 className="mb-4">Recomended Songs</h3>
+        <h3 className="mt-4 mb-4">Recomended Songs</h3>
         {/* <Title title="Recommend Songs" style={{ fontSize: "25px" }} /> */}
 
         {loading ? (
@@ -40,9 +40,9 @@ const Recomend = () => {
           <div className="recomend-main-div">
             {poster
               ?.filter((value) => {
-                if (filtered === "") {
+                if (filtered === "puyol") {
                   return value;
-                } else if (value?.recommendSong === "true") {
+                } else if (value.recommendSong) {
                   return value;
                 }
               })

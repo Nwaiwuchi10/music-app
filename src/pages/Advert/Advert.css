@@ -1,0 +1,19 @@
+.advert-img-div {
+  width: 100%;
+  height: 150%;
+}
+.advert-img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.advert-img2 {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  .advert-img-div {
+    display: none;
+  }
+}

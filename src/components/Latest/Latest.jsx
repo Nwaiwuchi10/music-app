@@ -1,22 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Title from "../../common/Title";
-import { getMusicApi } from "../../data/Apis";
+import { getMusicApi, getMusicVideoApi } from "../../data/Apis";
 import { news } from "../../data/data";
 import { CardLarge } from "../Cards/CardLarge";
 import Message from "../Messages/Message";
 import Loader from "../../components/Loading/Loader";
 import { Link } from "react-router-dom";
 import "../Pagination/Pagination.css";
-import Pagination from "../Pagination/Pagination";
-// import { Pagination } from "@mui/material";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { Button } from "@mui/material";
 
-const Latest = ({ totalPosts }) => {
+const Latest = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
   const [poster, setPoster] = useState([]);
+  const [posters, setPosters] = useState([]);
   const [filtered, setFiltered] = useState("");
-
+  const [viewPost, setViewPost] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
 
@@ -39,12 +40,12 @@ const Latest = ({ totalPosts }) => {
   }
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const posts = poster?.slice(indexOfFirstItem, indexOfLastItem);
+  const posts = poster?.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <>
       <section className="treading hero">
-        <Title title="Latest" />
+        <Title title="Latest Musics" />
         {/* <Slider {...settings}> */}
         {loading ? (
           <Loader />
@@ -52,15 +53,8 @@ const Latest = ({ totalPosts }) => {
           <Message variant="danger">{error}</Message>
         ) : (
           <div className="trends-div-plus">
-            {poster
-              ?.filter((value) => {
-                if (filtered === "Team Player") {
-                  return value;
-                } else if (value.category === "LATEST") {
-                  return value;
-                }
-              })
-              .map((item, i) => (
+            <>
+              {posts?.map((item, i) => (
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
@@ -77,22 +71,32 @@ const Latest = ({ totalPosts }) => {
                   </div>
                 </div>
               ))}
-            {/* <buton onClick={() => handlePageChange(currentPage - 1)}>
-              previous
-            </buton>
-            <Pagination
-              totalPosts={poster?.length}
-              itemsPerPage={itemsPerPage}
-              setCurrentPage={setCurrentPage}
-              currentPage={currentPage}
-            />
-            <button onClick={() => handlePageChange(currentPage + 1)}>
-              next
-            </button> */}
+            </>
           </div>
         )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "5px",
+          }}
+        >
+          <Button
+            style={{ marginRight: "15px" }}
+            variant="outlined"
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            <GoArrowLeft />
+          </Button>
 
-        {/* </Slider> */}
+          <Button
+            style={{ marginLeft: "15px" }}
+            variant="outlined"
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            <GoArrowRight />
+          </Button>
+        </div>
       </section>
     </>
   );

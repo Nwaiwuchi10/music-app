@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import "./Layout.css";
 import Container from "react-bootstrap/Container";
 import { TextField } from "@mui/material";
+import Advert from "../../pages/Advert/Advert";
 const LayoutSideBar = ({ children }) => {
   const [sidebarWidth, setSidebarWidth] = useState(undefined);
   const [sidebarTop, setSidebarTop] = useState(undefined);
@@ -65,6 +66,9 @@ const LayoutSideBar = ({ children }) => {
           // className={`sidebar ${sticky ? "sticky" : ""}`}
           >
             <Sidebar />
+          </div>
+          <div>
+            <Advert />
           </div>
         </div>
       </main>

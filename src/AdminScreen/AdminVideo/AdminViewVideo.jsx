@@ -3,15 +3,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Message from "../../../components/Messages/Message";
-import { getMusicApi } from "../../../data/Apis";
-import AdminLayout from "../../AdminDashboard/AdminLayout";
-import "./AdminGetMusic.css";
-import Loader from "../../../components/Loading/Loader";
-import CircularIndeterminate from "../../../components/Loading/Progress";
-const AdminGetMusic = () => {
+import Message from "../../components/Messages/Message";
+
+import Loader from "../../components/Loading/Loader";
+
+import { getMusicVideoApi } from "../../data/Apis";
+import AdminLayout from "../AdminDashboard/AdminLayout";
+const AdminViewVideo = () => {
   const { usery } = useParams();
-  const apiEndPoint = "http://localhost:5000/api/music/delete";
+  const apiEndPoint = "http://localhost:5000/api/mp4/delete";
   const navigate = useNavigate();
   const [poster, setPoster] = useState([]);
   const [spanish, setSpanish] = useState([]);
@@ -30,7 +30,7 @@ const AdminGetMusic = () => {
     e.preventDefault();
     setLoadings(true);
     axios
-      .delete(`http://localhost:5000/api/music/delete/${usery.id}`)
+      .delete(`http://localhost:5000/api/mp4/delete/${usery.id}`)
 
       .then((res) => {
         setLoadings(false);
@@ -47,7 +47,7 @@ const AdminGetMusic = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/music/delete/${usery?._id}`,
+        `http://localhost:5000/api/mp4/delete/${usery?._id}`,
         {
           method: "DELETE",
           headers: {
@@ -67,7 +67,7 @@ const AdminGetMusic = () => {
   };
   const handleDelete = async (id) => {
     await axios.delete(
-      `https://todaysmusic.herokuapp.com/api/music/delete/${id}`
+      `https://todaysmusic.herokuapp.com/api/mp4/delete/${id}`
     );
 
     setPoster(poster.filter((p) => p._id !== usery._id));
@@ -75,7 +75,7 @@ const AdminGetMusic = () => {
   };
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicApi);
+      const { data } = await axios.get(getMusicVideoApi);
       console.log(data);
       setPoster(data);
       setLoading(false);
@@ -89,7 +89,9 @@ const AdminGetMusic = () => {
 
   return (
     <AdminLayout>
-      <h3 className="text-center mb-4 mt-4">View All {poster.length} Music </h3>
+      <h3 className="text-center mb-4 mt-4">
+        View All {poster.length} Music Video{" "}
+      </h3>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -127,7 +129,14 @@ const AdminGetMusic = () => {
                   <td data-label="S.title"> {usery.title}</td>
                   <td data-label="S.category"> {usery.category}</td>
                   <td data-label="S.genre"> {usery.genre}</td>
-                  <td data-label="S.Recommend"> {usery.recommendSong}</td>
+                  <td data-label="S.Recommend">
+                    {" "}
+                    {usery?.recommendSong === "true" ? (
+                      <>
+                        <h4>True</h4>
+                      </>
+                    ) : null}
+                  </td>
 
                   <td data-label="S.edith/delete">
                     <Link to={`/edithNewsBlog/${usery._id}`}>
@@ -160,4 +169,4 @@ const AdminGetMusic = () => {
   );
 };
 
-export default AdminGetMusic;
+export default AdminViewVideo;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { Hero } from "../../components/Hero/Hero";
@@ -7,6 +7,7 @@ import Trends from "../../components/TrendingPage/Trends";
 import Container from "react-bootstrap/Container";
 import Latest from "../../components/Latest/Latest";
 import Recomend from "../../components/Recomend/Recomend";
+
 const HomePage = () => {
   return (
     <div>

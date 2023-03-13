@@ -2,32 +2,35 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Title from "../../common/Title";
-import { getMusicApi } from "../../data/Apis";
+import { getMusicApi, getMusicVideoApi } from "../../data/Apis";
 import { treading } from "../../data/data";
 import { CardLarge } from "../Cards/CardLarge";
 import Message from "../Messages/Message";
 import "./Trends.css";
 import Loader from "../../components/Loading/Loader";
 import { Link } from "react-router-dom";
-import { Pagination } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
+import { CardVideoLarge } from "../Cards/CardVideoLarge";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 const Trends = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [page1, setPage1] = useState(1);
+  const [page2, setPage2] = useState(1);
   const [poster, setPoster] = useState([]);
+  const [posters, setPosters] = useState([]);
   const [filtered, setFiltered] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
-  function handlePageChange(newPage) {
-    setCurrentPage(newPage);
+  function handlePageChanges(newPages) {
+    setCurrentPage(newPages);
   }
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const post = poster.slice(indexOfFirstItem, indexOfLastItem);
+
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicApi);
+      const { data } = await axios.get(getMusicVideoApi);
       console.log(data);
-      setPoster(data);
+      setPosters(data);
       setLoading(false);
       setError(false);
 
@@ -36,6 +39,7 @@ const Trends = () => {
 
     fetchPosts();
   }, []);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -59,10 +63,17 @@ const Trends = () => {
       },
     ],
   };
+  function handlePageChange(newPage) {
+    setCurrentPage(newPage);
+  }
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const posts = poster?.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
     <>
       <section className="treading hero">
-        <Title title="Trending" />
+        <Title title="Music Videos" />
         {/* <Slider {...settings}> */}
         {loading ? (
           <Loader />
@@ -70,46 +81,51 @@ const Trends = () => {
           <Message variant="danger">{error}</Message>
         ) : (
           <div className="trends-div-plus">
-            {poster
-              ?.filter((value) => {
-                if (filtered === "Team Player") {
-                  return value;
-                } else if (value.category === "TRENDING") {
-                  return value;
-                }
-              })
-              .map((item, i) => (
+            <>
+              {posters?.map((item, i) => (
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
-                      to={`/mp3-download/${item._id}`}
+                      to={`/mp4-download/${item._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      <CardLarge
+                      <CardVideoLarge
                         cover={item.image}
                         name={item.artist}
                         tag={item.title}
+                        style={{ color: "inherit" }}
                       />
                     </Link>
                   </div>
                 </div>
               ))}
-            <div>
-              {/* <Pagination
-                count={10}
-                variant="outlined"
-                shape="rounded"
-                onClick={() => handlePageChange(currentPage - 1 && +1)}
-              /> */}
-              {/* <button onClick={() => handlePageChange(currentPage - 1)}>
-                Previous
-              </button>
-              <button onClick={() => handlePageChange(currentPage + 1)}>
-                Next
-              </button> */}
-            </div>
+            </>
           </div>
         )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "5px",
+          }}
+        >
+          <Button
+            style={{ marginRight: "15px" }}
+            variant="outlined"
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            <GoArrowLeft />
+          </Button>
+
+          <Button
+            style={{ marginLeft: "15px" }}
+            variant="outlined"
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            <GoArrowRight />
+          </Button>
+        </div>
+
         {/* </Slider> */}
       </section>
     </>
