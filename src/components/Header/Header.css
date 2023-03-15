@@ -38,3 +38,11 @@
     margin-bottom: 40px;
   }
 }
+@media screen and (max-width: 420px) {
+  .hd-div-mg-ds {
+    display: block;
+  }
+  .img-hd {
+    display: none;
+  }
+}
