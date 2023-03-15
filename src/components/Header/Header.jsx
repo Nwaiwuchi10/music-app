@@ -21,6 +21,8 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { MdPermContactCalendar } from "react-icons/md";
 import { SiHatenabookmark } from "react-icons/si";
+import djs from "../../assets/Images/djs.png";
+import { HiBars3BottomRight } from "react-icons/hi2";
 const drawerWidth = 240;
 // const navItems = ["Home", "About", "Contact"];
 
@@ -125,12 +127,20 @@ function Header(props) {
                 display: { sm: "none" },
               }}
             >
-              <MenuIcon />
+              <HiBars3BottomRight />
+              {/* <MenuIcon /> */}
             </IconButton>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-              <Typography variant="h6" component="div" className="now-music-sm">
-                TodaysMusic
-              </Typography>
+              <div className="hd-div-mg-ds">
+                <img src={djs} alt="dnnd" className="img-hd" />
+                <Typography
+                  variant="h6"
+                  component="div"
+                  className="now-music-sm"
+                >
+                  TodaysMusic
+                </Typography>
+              </div>
             </Link>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <Typography

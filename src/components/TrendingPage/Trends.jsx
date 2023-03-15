@@ -68,7 +68,7 @@ const Trends = () => {
   }
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const posts = poster?.slice(indexOfFirstItem, indexOfLastItem);
+  const posts = posters?.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <>
@@ -82,7 +82,7 @@ const Trends = () => {
         ) : (
           <div className="trends-div-plus">
             <>
-              {posters?.map((item, i) => (
+              {posts?.map((item, i) => (
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
