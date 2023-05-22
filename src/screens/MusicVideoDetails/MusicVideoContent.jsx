@@ -16,7 +16,7 @@ const MusicVideoContent = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(
-        `https://todaysmusic.herokuapp.com/api/mp4/${id}`
+        `https://music-backend-jzrn.onrender.com/api/mp4/${id}`
       );
       console.log(data);
       setMp3Data(data);
