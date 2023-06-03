@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Title from "../../common/Title";
-import { getMusicApi } from "../../data/Apis";
+
 import { recommend } from "../../data/data";
 import CardSmall from "../Cards/CardSmall";
 import Message from "../Messages/Message";
 import Loader from "../../components/Loading/Loader";
 import "./Recomend.css";
+import { getMusicApi } from "../../data/Apis";
 const Recomend = () => {
   const [poster, setPoster] = useState([]);
   const [filtered, setFiltered] = useState("");

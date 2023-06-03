@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillApple } from "react-icons/ai";
 import { IoPlaySharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { getMusicApi, getMusicVideoApi } from "../../data/Apis";
+
 import { recommand } from "../../data/data";
 import CardSm from "../Cards/CardSm";
 import CardSmall from "../Cards/CardSmall";
@@ -12,6 +12,8 @@ import CardSmData from "../Cards/CardSmData";
 import "../Cards/CardSm.css";
 import "./Layout.css";
 import "./Sidebar.css";
+import { getMusicApi, getMusicsVideoApi } from "../../data/Apis";
+
 const Sidebar = ({ i, show }) => {
   const [searchTitle, setSearchTitle] = useState("");
   const [poster, setPoster] = useState([]);
@@ -30,7 +32,7 @@ const Sidebar = ({ i, show }) => {
   }, []);
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicVideoApi);
+      const { data } = await axios.get(getMusicsVideoApi);
       console.log(data);
       setPosters(data);
 

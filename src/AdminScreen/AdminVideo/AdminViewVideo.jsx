@@ -7,11 +7,11 @@ import Message from "../../components/Messages/Message";
 
 import Loader from "../../components/Loading/Loader";
 
-import { getMusicVideoApi } from "../../data/Apis";
 import AdminLayout from "../AdminDashboard/AdminLayout";
+import { getMusicsVideoApi } from "../../data/Apis";
 const AdminViewVideo = () => {
   const { usery } = useParams();
-  const apiEndPoint = "http://localhost:5000/api/mp4/delete";
+  const apiEndPoint = "https://nowmusic.onrender.com/api/mp4/delete";
   const navigate = useNavigate();
   const [poster, setPoster] = useState([]);
   const [spanish, setSpanish] = useState([]);
@@ -30,7 +30,7 @@ const AdminViewVideo = () => {
     e.preventDefault();
     setLoadings(true);
     axios
-      .delete(`http://localhost:5000/api/mp4/delete/${usery.id}`)
+      .delete(`https://nowmusic.onrender.com/api/mp4/delete/${usery.id}`)
 
       .then((res) => {
         setLoadings(false);
@@ -47,7 +47,7 @@ const AdminViewVideo = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/mp4/delete/${usery?._id}`,
+        `https://nowmusic.onrender.com/api/mp4/delete/${usery?._id}`,
         {
           method: "DELETE",
           headers: {
@@ -66,16 +66,14 @@ const AdminViewVideo = () => {
     }
   };
   const handleDelete = async (id) => {
-    await axios.delete(
-      `https://todaysmusic.herokuapp.com/api/mp4/delete/${id}`
-    );
+    await axios.delete(`https://nowmusic.onrender.com/api/mp4/delete/${id}`);
 
     setPoster(poster.filter((p) => p._id !== usery._id));
     navigate("/ViewMusic");
   };
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicVideoApi);
+      const { data } = await axios.get(getMusicsVideoApi);
       console.log(data);
       setPoster(data);
       setLoading(false);

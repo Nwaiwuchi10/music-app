@@ -16,7 +16,7 @@ const MusicContent = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(
-        `https://music-backend-jzrn.onrender.com/api/music/${id}`
+        `https://nowmusic.onrender.com/api/music/${id}`
       );
       console.log(data);
       setMp3Data(data);

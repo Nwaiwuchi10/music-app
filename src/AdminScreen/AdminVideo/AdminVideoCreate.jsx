@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import CircularIndeterminate from "../../components/Loading/Progress";
-import { getMusicVideoApi, musicAllApi } from "../../data/Apis";
+
 import AdminLayout from "../AdminDashboard/AdminLayout";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SucessToast from "../../components/Toast/SucessToast";
+import { getMusicsVideoApi } from "../../data/Apis";
 const AdminVideoCreate = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -95,7 +96,7 @@ const AdminVideoCreate = () => {
     };
 
     axios
-      .post(getMusicVideoApi, data, headers)
+      .post(getMusicsVideoApi, data, headers)
 
       .then((res) => {
         console.log(res.data);

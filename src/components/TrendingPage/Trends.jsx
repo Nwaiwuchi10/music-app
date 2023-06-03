@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Title from "../../common/Title";
-import { getMusicApi, getMusicVideoApi } from "../../data/Apis";
+
 import { treading } from "../../data/data";
 import { CardLarge } from "../Cards/CardLarge";
 import Message from "../Messages/Message";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { Button, Pagination } from "@mui/material";
 import { CardVideoLarge } from "../Cards/CardVideoLarge";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { getMusicsVideoApi } from "../../data/Apis";
 const Trends = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
@@ -28,7 +29,7 @@ const Trends = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicVideoApi);
+      const { data } = await axios.get(getMusicsVideoApi);
       console.log(data);
       setPosters(data);
       setLoading(false);

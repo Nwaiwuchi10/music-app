@@ -8,10 +8,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { hero1, hero2 } from "../../data/data";
-import { getMusicApi, getMusicVideoApi } from "../../data/Apis";
+
 import Message from "../Messages/Message";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { getMusicsVideoApi } from "../../data/Apis";
 
 function SampleNextArrow(props) {
   const { onClick } = props;
@@ -48,7 +49,7 @@ export const Hero = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicVideoApi);
+      const { data } = await axios.get(getMusicsVideoApi);
       console.log(data);
       setPoster(data);
       setLoading(false);

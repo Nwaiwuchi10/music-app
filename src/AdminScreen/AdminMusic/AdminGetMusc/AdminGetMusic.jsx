@@ -11,7 +11,7 @@ import Loader from "../../../components/Loading/Loader";
 import CircularIndeterminate from "../../../components/Loading/Progress";
 const AdminGetMusic = () => {
   const { usery } = useParams();
-  const apiEndPoint = "http://localhost:5000/api/music/delete";
+  const apiEndPoint = "https://nowmusic.onrender.com/api/music/delete";
   const navigate = useNavigate();
   const [poster, setPoster] = useState([]);
   const [spanish, setSpanish] = useState([]);
@@ -66,9 +66,7 @@ const AdminGetMusic = () => {
     }
   };
   const handleDelete = async (id) => {
-    await axios.delete(
-      `https://todaysmusic.herokuapp.com/api/music/delete/${id}`
-    );
+    await axios.delete(`https://nowmusic.onrender.com/api/music/delete/${id}`);
 
     setPoster(poster.filter((p) => p._id !== usery._id));
     navigate("/ViewMusic");
