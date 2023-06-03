@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import CircularIndeterminate from "../../components/Loading/Progress";
-import { musicAllApi } from "../../data/Apis";
+import { getMusicApi, musicAllApi } from "../../data/Apis";
 import AdminLayout from "../AdminDashboard/AdminLayout";
 import "./AdminCreateMusic.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -93,7 +93,7 @@ const AdminCreateMusic = () => {
     };
 
     axios
-      .post(musicAllApi, data, headers)
+      .post(getMusicApi, data, headers)
 
       .then((res) => {
         console.log(res.data);
