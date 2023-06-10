@@ -86,8 +86,13 @@ function Header(props) {
           </ListItem>
           <ListItem>
             {" "}
-            <MdPermContactCalendar style={{ marginRight: "5px" }} />
-            Contact Us
+            <Link
+              to="/contact-us"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <MdPermContactCalendar style={{ marginRight: "5px" }} /> Contact
+              Us
+            </Link>
           </ListItem>
         </ul>
         {/* {navItems.map((item) => (
@@ -172,9 +177,13 @@ function Header(props) {
                   </ListItem>
 
                   <ListItem>
-                    {" "}
-                    <span>Contact</span>
-                    <span style={{ marginLeft: "5px" }}>Us</span>
+                    <Link
+                      to="/contact-us"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <span>Contact</span>
+                      <span style={{ marginLeft: "5px" }}>Us</span>
+                    </Link>
                   </ListItem>
                 </ul>
               </List>

@@ -12,7 +12,7 @@ import CardSmData from "../Cards/CardSmData";
 import "../Cards/CardSm.css";
 import "./Layout.css";
 import "./Sidebar.css";
-import { getMusicApi, getMusicsVideoApi } from "../../data/Apis";
+import { getMusicApi, getMusicsVideoApi, musicAllApi } from "../../data/Apis";
 
 const Sidebar = ({ i, show }) => {
   const [searchTitle, setSearchTitle] = useState("");
@@ -21,7 +21,7 @@ const Sidebar = ({ i, show }) => {
   const [filtered, setFiltered] = useState("");
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicApi);
+      const { data } = await axios.get(musicAllApi);
       console.log(data);
       setPoster(data);
 
@@ -72,7 +72,7 @@ const Sidebar = ({ i, show }) => {
                 <>
                   <div>
                     <Link
-                      to={`/mp3-download/${usery?._id}`}
+                      to={`/mp3-download/${usery?.title.replace(/\s+/g, "_")}`}
                       style={{ textDecoration: "none" }}
                     >
                       <div className="img sm-img-img-card-small">
@@ -114,7 +114,7 @@ const Sidebar = ({ i, show }) => {
                 <>
                   <div>
                     <Link
-                      to={`/mp4-download/${usery?._id}`}
+                      to={`/mp4-download/${usery?.title.replace(/\s+/g, "_")}`}
                       style={{ textDecoration: "none" }}
                     >
                       <div className="img sm-img-img-card-small">
@@ -131,7 +131,7 @@ const Sidebar = ({ i, show }) => {
                           className="name-card-big-hi"
                           style={{ fontSize: "small" }}
                         >
-                          {usery.title}
+                          {usery.title.replace(/_/g, " ")}
                         </span>
                       </div>
                     </Link>

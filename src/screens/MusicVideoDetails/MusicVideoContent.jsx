@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/Loading/Loader";
 // import "./MusicContent.css";
 const MusicVideoContent = () => {
-  const { id } = useParams();
+  const { title } = useParams();
 
-  const data = JSON.parse(localStorage.getItem("PostId"));
+  const data = JSON.parse(localStorage.getItem("PostVideoId"));
   const [mp3Data, setMp3Data] = useState(null);
 
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const MusicVideoContent = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(
-        `https://music-backend-jzrn.onrender.com/api/mp4/${id}`
+        `https://todaysmusic.onrender.com/api/mp4/mp4/${title}`
       );
       console.log(data);
       setMp3Data(data);
@@ -25,7 +25,7 @@ const MusicVideoContent = () => {
     };
 
     fetchPosts();
-  }, [id]);
+  }, []);
 
   const handleDownload = () => {
     // You can use the HTML5 `download` attribute to download the MP3 file

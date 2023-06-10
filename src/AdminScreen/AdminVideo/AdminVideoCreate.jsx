@@ -15,7 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SucessToast from "../../components/Toast/SucessToast";
-import { getMusicsVideoApi } from "../../data/Apis";
+import { getMusicVideoApi, getMusicsVideoApi } from "../../data/Apis";
 const AdminVideoCreate = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -96,7 +96,7 @@ const AdminVideoCreate = () => {
     };
 
     axios
-      .post(getMusicsVideoApi, data, headers)
+      .post(getMusicVideoApi, data, headers)
 
       .then((res) => {
         console.log(res.data);

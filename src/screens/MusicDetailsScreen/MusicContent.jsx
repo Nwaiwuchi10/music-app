@@ -4,28 +4,36 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loading/Loader";
 import "./MusicContent.css";
+
 const MusicContent = () => {
-  const { id } = useParams();
+  const { title } = useParams();
 
   const data = JSON.parse(localStorage.getItem("PostId"));
   const [mp3Data, setMp3Data] = useState(null);
-
+  const [downloadCount, setDownloadCount] = useState(
+    parseInt(localStorage.getItem("downloadCount")) || 0
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(
-        `https://nowmusic.onrender.com/api/music/${id}`
+        `https://todaysmusic.onrender.com/api/music/mp3/${title}`
       );
       console.log(data);
+      // const foundData = data.find((item) => item.artist === artist);
       setMp3Data(data);
       setLoading(false);
       setError(false);
     };
 
     fetchPosts();
-  }, [id]);
+  }, []);
+  useEffect(() => {
+    // Update localStorage whenever the download count changes
+    localStorage.setItem("downloadCount", downloadCount.toString());
+  }, [downloadCount]);
 
   const handleDownload = () => {
     // You can use the HTML5 `download` attribute to download the MP3 file
@@ -35,6 +43,8 @@ const MusicContent = () => {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+    setDownloadCount((prevCount) => prevCount + 1);
+    // localStorage.setItem("downloadCount", downloadCount.toString());
   };
 
   return (
@@ -115,6 +125,13 @@ const MusicContent = () => {
         ) : (
           <p>{loading && <Loader />}</p>
         )}
+      </div>
+      <div className="text-center">
+        {" "}
+        <p>
+          Total Number of Downloads:{" "}
+          <strong style={{ color: "darkblue" }}>{downloadCount}</strong>
+        </p>
       </div>
     </>
   );

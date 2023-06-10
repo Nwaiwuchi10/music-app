@@ -98,13 +98,15 @@ export const Hero = () => {
             {poster?.slice(0, 4).map((item) => (
               <div className="box hero-min2-div " key={item.id}>
                 <Link
-                  to={`/mp4-download/${item._id}`}
+                  to={`/mp4-download/${item.title.replace(/\s+/g, "_")}`}
                   style={{ textDecoration: "none" }}
                 >
                   <img src={item.image} alt="cover" className="img-min2-div" />
                   <div className="hero-page">
                     <h3 className="hero-min-text">{item.artist}</h3>
-                    <span className="hero-min-text-span">{item.title}</span>
+                    <span className="hero-min-text-span">
+                      {item.title.replace(/_/g, " ")}
+                    </span>
                   </div>
                   <div className="icon-overlaye ">
                     <BsPlayCircle size={45} className="show" />

@@ -7,7 +7,8 @@ import CardSmall from "../Cards/CardSmall";
 import Message from "../Messages/Message";
 import Loader from "../../components/Loading/Loader";
 import "./Recomend.css";
-import { getMusicApi } from "../../data/Apis";
+import { getMusicApi, musicAllApi } from "../../data/Apis";
+import { Link } from "react-router-dom";
 const Recomend = () => {
   const [poster, setPoster] = useState([]);
   const [filtered, setFiltered] = useState("");
@@ -16,7 +17,7 @@ const Recomend = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicApi);
+      const { data } = await axios.get(musicAllApi);
       console.log(data);
       setPoster(data);
       setLoading(false);
@@ -49,12 +50,19 @@ const Recomend = () => {
               })
               .slice(0, 10)
               .map((item, i) => (
-                <CardSmall
-                  cover={item.image}
-                  name={item.artist}
-                  tag={item.title}
-                  i={i}
-                />
+                <>
+                  <Link
+                    to={`/mp3-download/${item.title.replace(/\s+/g, "_")}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <CardSmall
+                      cover={item.image}
+                      name={item.artist}
+                      tag={item.title}
+                      i={i}
+                    />
+                  </Link>
+                </>
               ))}
           </div>
         )}

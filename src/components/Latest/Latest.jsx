@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Title from "../../common/Title";
-import { getMusicApi, getMusicVideoApi } from "../../data/Apis";
+import { getMusicApi, getMusicVideoApi, musicAllApi } from "../../data/Apis";
 import { news } from "../../data/data";
 import { CardLarge } from "../Cards/CardLarge";
 import Message from "../Messages/Message";
@@ -23,7 +23,7 @@ const Latest = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(getMusicApi);
+      const { data } = await axios.get(musicAllApi);
       console.log(data);
       setPoster(data);
       setLoading(false);
@@ -58,13 +58,14 @@ const Latest = () => {
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
-                      to={`/mp3-download/${item._id}`}
+                      to={`/mp3-download/${item.title.replace(/\s+/g, "_")}`}
                       style={{ textDecoration: "none" }}
                     >
                       <CardLarge
                         cover={item.image}
                         name={item.artist}
-                        tag={item.title}
+                        // tag={item.title}
+                        tag={item.title.replace(/_/g, " ")}
                         style={{ color: "inherit" }}
                       />
                     </Link>

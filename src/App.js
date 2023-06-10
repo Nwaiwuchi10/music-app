@@ -7,6 +7,7 @@ import "./App.css";
 import HomePage from "./pages/Home/HomePage";
 import MusicDetails from "./screens/MusicDetailsScreen/MusicDetails";
 import MusicVideoDetails from "./screens/MusicVideoDetails/MusicVideoDetail";
+import ContactUs from "./pages/ContactUs/ContactUs";
 
 function App() {
   return (
@@ -14,11 +15,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Nchrys" element={<AdminCreateMusic />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/CreateVideo" element={<AdminVideoCreate />} />
         <Route path="/ViewMusic" element={<AdminGetMusic />} />
         <Route path="/ViewVideo" element={<AdminViewVideo />} />
-        <Route path="/mp3-download/:id" element={<MusicDetails />} />
-        <Route path="/mp4-download/:id" element={<MusicVideoDetails />} />
+        <Route path="/mp3-download/:title" element={<MusicDetails />} />
+        <Route path="/mp4-download/:title" element={<MusicVideoDetails />} />
       </Routes>
     </div>
   );

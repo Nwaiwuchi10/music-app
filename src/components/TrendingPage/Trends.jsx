@@ -35,7 +35,7 @@ const Trends = () => {
       setLoading(false);
       setError(false);
 
-      localStorage.setItem("PostId", JSON.stringify(data));
+      localStorage.setItem("PostVideoId", JSON.stringify(data));
     };
 
     fetchPosts();
@@ -87,13 +87,14 @@ const Trends = () => {
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
-                      to={`/mp4-download/${item._id}`}
+                      to={`/mp4-download/${item.title.replace(/\s+/g, "_")}`}
                       style={{ textDecoration: "none" }}
                     >
                       <CardVideoLarge
                         cover={item.image}
                         name={item.artist}
-                        tag={item.title}
+                        tag={item.title.replace(/_/g, " ")}
+                        // tag={item.title}
                         style={{ color: "inherit" }}
                       />
                     </Link>
