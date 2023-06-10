@@ -43,6 +43,9 @@
   left: 40%;
   color: white;
 }
+.nitk {
+  color: black;
+}
 
 @media screen and (max-width: 768px) {
   .min-large-card-div {
