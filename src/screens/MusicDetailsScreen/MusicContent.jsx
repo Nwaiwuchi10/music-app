@@ -54,7 +54,7 @@ const MusicContent = () => {
           <div>
             <div className="text-center mt-5 mb-5">
               <h4 className="ity">
-                {mp3Data.artist}-{mp3Data.title}{" "}
+                {mp3Data.artist}-{mp3Data.title.replace(/_/g, " ")}{" "}
               </h4>
             </div>
             <div className="w-div-img">
@@ -65,7 +65,7 @@ const MusicContent = () => {
               style={{ color: "grey", fontSize: "large" }}
             >
               <span>{mp3Data.artist} </span>
-              <span>{mp3Data.title} </span>
+              <span>{mp3Data.title.replace(/_/g, " ")} </span>
               <span>MP3 Download</span>
             </div>
             <div

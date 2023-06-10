@@ -89,7 +89,7 @@ const Sidebar = ({ i, show }) => {
                           className="name-card-big-hi"
                           style={{ fontSize: "small" }}
                         >
-                          {usery.title}
+                          {usery.title.replace(/_/g, " ")}
                         </span>
                       </div>
                     </Link>
@@ -153,14 +153,14 @@ const Sidebar = ({ i, show }) => {
           .map((item, i) => (
             <div className="mb-3">
               <Link
-                to={`/mp3-download/${item?._id}`}
+                to={`/mp3-download/${item.title.replace(/\s+/g, "_")}`}
                 style={{ textDecoration: "none" }}
               >
                 {" "}
                 <CardSm
                   cover={item.image}
                   name={item.artist}
-                  tag={item.title}
+                  tag={item.title.replace(/_/g, " ")}
                   i={i}
                 />
               </Link>

@@ -71,12 +71,24 @@ function Header(props) {
           }}
         >
           <ListItem>
-            <GiMusicalScore style={{ marginRight: "5px" }} /> Music
+            {" "}
+            <Link
+              to="/musics"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              {" "}
+              <GiMusicalScore style={{ marginRight: "5px" }} /> Music
+            </Link>
           </ListItem>
           <ListItem>
-            {" "}
-            <FaVideo style={{ marginRight: "5px" }} />
-            Videos
+            <Link
+              to="/videos"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              {" "}
+              <FaVideo style={{ marginRight: "5px" }} />
+              Videos{" "}
+            </Link>
           </ListItem>
 
           <ListItem>
@@ -167,8 +179,24 @@ function Header(props) {
                     textAlign: "right",
                   }}
                 >
-                  <ListItem>Music</ListItem>
-                  <ListItem>Videos</ListItem>
+                  <ListItem>
+                    {" "}
+                    <Link
+                      to="/musics"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      Music
+                    </Link>
+                  </ListItem>
+                  <ListItem>
+                    <Link
+                      to="/videos"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {" "}
+                      Videos
+                    </Link>
+                  </ListItem>
 
                   <ListItem>
                     {" "}
