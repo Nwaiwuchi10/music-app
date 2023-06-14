@@ -70,6 +70,7 @@ const AdminViewVideo = () => {
 
     setPoster(poster.filter((p) => p._id !== usery._id));
     navigate("/ViewMusic");
+    window.location.reload();
   };
   useEffect(() => {
     const fetchPosts = async () => {
@@ -137,7 +138,7 @@ const AdminViewVideo = () => {
                   </td>
 
                   <td data-label="S.edith/delete">
-                    <Link to={`/edithNewsBlog/${usery._id}`}>
+                    <Link to={`/edithVideo/${usery._id}`}>
                       <Button variant="light" className="btn-sm">
                         <FaEdit />
                       </Button>

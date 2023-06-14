@@ -64,7 +64,7 @@ const Footer = () => {
                     }}
                   />
                   <div className="jbi-foot">
-                    TodaysMusic is your home for African Music
+                    TodaysMuzic is your home for African Music
                   </div>
                 </div>
                 {/* <!-- Grid column --> */}
@@ -88,17 +88,17 @@ const Footer = () => {
                   </p>
                   <p>
                     <Link to="/" class="text-dark text-decoration-none">
-                      News
+                      Music
                     </Link>
                   </p>
                   <p>
                     <Link to="#!" class="text-dark text-decoration-none">
-                      About Us
+                      Video
                     </Link>
                   </p>
                   <p>
                     <Link to class="text-dark text-decoration-none">
-                      Genre
+                      About Us
                     </Link>
                   </p>
                 </div>
@@ -121,7 +121,7 @@ const Footer = () => {
                     }}
                   />
                   <p>
-                    <i class="fas fa-home mr-3"></i> TodaysMusic Secretariate:
+                    <i class="fas fa-home mr-3"></i> TodaysMuzik Secretariate:
                     Owerri Imo State
                   </p>
                   <p>
@@ -131,7 +131,7 @@ const Footer = () => {
                     <i class="fas fa-phone mr-3"></i> +234816757488
                   </p>
                   <p>
-                    <i class="fas fa-print mr-3"></i> +234 (818) 518-3179
+                    <i class="fas fa-print mr-3"></i> +2348168950707
                   </p>
                 </div>
                 {/* <!-- Grid column --> */}
@@ -145,7 +145,7 @@ const Footer = () => {
           <div class="text-center p-3" style={{ backgroundColor: "white" }}>
             © 2023 Copyright:
             <Link to="/" class="text-dark text-decoration-none">
-              TodaysMusic
+              TodaysMuzik
             </Link>
           </div>
           {/* <!-- Copyright --> */}

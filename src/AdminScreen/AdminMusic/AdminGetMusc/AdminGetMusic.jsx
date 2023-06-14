@@ -72,6 +72,7 @@ const AdminGetMusic = () => {
 
     setPoster(poster.filter((p) => p._id !== usery._id));
     navigate("/ViewMusic");
+    window.location.reload();
   };
   useEffect(() => {
     const fetchPosts = async () => {
@@ -130,7 +131,7 @@ const AdminGetMusic = () => {
                   <td data-label="S.Recommend"> {usery.recommendSong}</td>
 
                   <td data-label="S.edith/delete">
-                    <Link to={`/edithNewsBlog/${usery._id}`}>
+                    <Link to={`/edithMusic/${usery._id}`}>
                       <Button variant="light" className="btn-sm">
                         <FaEdit />
                       </Button>

@@ -142,7 +142,8 @@ const Sidebar = ({ i, show }) => {
           ))}
         <h5 className=" mb-4 ">Trending Songs</h5>
         {poster
-          ?.filter((value) => {
+          ?.slice(0, 6)
+          .filter((value) => {
             if (filtered === "puyol") {
               return value;
             } else if (value.category === "TRENDING") {

@@ -4,15 +4,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loading/Loader";
 import "./MusicContent.css";
+import { musicAllApi } from "../../data/Apis";
 
 const MusicContent = () => {
   const { title } = useParams();
 
   const data = JSON.parse(localStorage.getItem("PostId"));
   const [mp3Data, setMp3Data] = useState(null);
-  const [downloadCount, setDownloadCount] = useState(
+  const [downloadCounts, setDownloadCounts] = useState(
     parseInt(localStorage.getItem("downloadCount")) || 0
   );
+  const [downloadCount, setDownloadCount] = useState(0);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
 
@@ -32,8 +35,20 @@ const MusicContent = () => {
   }, []);
   useEffect(() => {
     // Update localStorage whenever the download count changes
-    localStorage.setItem("downloadCount", downloadCount.toString());
-  }, [downloadCount]);
+    localStorage.setItem("downloadCounts", downloadCounts.toString());
+  }, [downloadCounts]);
+
+  const handleUpdate = async () => {
+    const data = {
+      downloadCount: downloadCount,
+    };
+    await axios
+      .put(musicAllApi + title, data)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+    setDownloadCount("");
+  };
 
   const handleDownload = () => {
     // You can use the HTML5 `download` attribute to download the MP3 file
@@ -43,7 +58,8 @@ const MusicContent = () => {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
-    setDownloadCount((prevCount) => prevCount + 1);
+    setDownloadCounts((prevCount) => prevCount + 1);
+    handleUpdate();
     // localStorage.setItem("downloadCount", downloadCount.toString());
   };
 
@@ -130,7 +146,7 @@ const MusicContent = () => {
         {" "}
         <p>
           Total Number of Downloads:{" "}
-          <strong style={{ color: "darkblue" }}>{downloadCount}</strong>
+          <strong style={{ color: "darkblue" }}>{mp3Data.downloadCount}</strong>
         </p>
       </div>
     </>

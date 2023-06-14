@@ -10,6 +10,8 @@ import MusicVideoDetails from "./screens/MusicVideoDetails/MusicVideoDetail";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import AllMusic from "./pages/AllMusicPage/AllMusic";
 import AllVideo from "./pages/AllVideos/AllVideo";
+import AdminUpdateMusic from "./AdminScreen/AdminMusic/AdminUpdateMusic/AdminUpdateMusic";
+import AdminUpdateVideo from "./AdminScreen/AdminVideo/AdminUpdate";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/ViewMusic" element={<AdminGetMusic />} />
         <Route path="/ViewVideo" element={<AdminViewVideo />} />
         <Route path="/mp3-download/:title" element={<MusicDetails />} />
+        <Route path="/edithMusic/:id" element={<AdminUpdateMusic />} />
+        <Route path="/edithVideo/:id" element={<AdminUpdateVideo />} />
         <Route path="/mp4-download/:title" element={<MusicVideoDetails />} />
       </Routes>
     </div>

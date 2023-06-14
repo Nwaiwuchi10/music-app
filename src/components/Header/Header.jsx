@@ -155,7 +155,7 @@ function Header(props) {
                   component="div"
                   className="now-music-sm"
                 >
-                  TodaysMusic
+                  TodaysMuzik
                 </Typography>
               </div>
             </Link>
@@ -165,7 +165,7 @@ function Header(props) {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
               >
-                TodaysMusic
+                TodaysMuzik
               </Typography>
             </Link>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>

@@ -13,7 +13,7 @@ import { Button } from "@mui/material";
 
 const Latest = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(16);
   const [poster, setPoster] = useState([]);
   const [posters, setPosters] = useState([]);
   const [filtered, setFiltered] = useState("");

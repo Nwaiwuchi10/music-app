@@ -15,7 +15,7 @@ import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { getMusicsVideoApi } from "../../data/Apis";
 const Trends = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(16);
   const [page1, setPage1] = useState(1);
   const [page2, setPage2] = useState(1);
   const [poster, setPoster] = useState([]);
