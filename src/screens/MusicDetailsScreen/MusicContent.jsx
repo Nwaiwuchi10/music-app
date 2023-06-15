@@ -1,19 +1,20 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/Loading/Loader";
 import "./MusicContent.css";
-import { musicAllApi } from "../../data/Apis";
+import { MusicDownloadCountApi, musicAllApi } from "../../data/Apis";
 
 const MusicContent = () => {
+  const navigate = useNavigate();
   const { title } = useParams();
 
   const data = JSON.parse(localStorage.getItem("PostId"));
   const [mp3Data, setMp3Data] = useState(null);
-  const [downloadCounts, setDownloadCounts] = useState(
-    parseInt(localStorage.getItem("downloadCount")) || 0
-  );
+  // const [downloadCounts, setDownloadCounts] = useState(
+  //   parseInt(localStorage.getItem("downloadCount")) || 0
+  // );
   const [downloadCount, setDownloadCount] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -33,17 +34,17 @@ const MusicContent = () => {
 
     fetchPosts();
   }, []);
-  useEffect(() => {
-    // Update localStorage whenever the download count changes
-    localStorage.setItem("downloadCounts", downloadCounts.toString());
-  }, [downloadCounts]);
+  // useEffect(() => {
+  //   // Update localStorage whenever the download count changes
+  //   localStorage.setItem("downloadCounts", downloadCounts.toString());
+  // }, [downloadCounts]);
 
-  const handleUpdate = async () => {
+  const handleUpdateCount = async () => {
     const data = {
       downloadCount: downloadCount,
     };
     await axios
-      .put(musicAllApi + title, data)
+      .put(MusicDownloadCountApi + title, data)
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
@@ -58,8 +59,8 @@ const MusicContent = () => {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
-    setDownloadCounts((prevCount) => prevCount + 1);
-    handleUpdate();
+    // setDownloadCounts((prevCount) => prevCount + 1);
+    handleUpdateCount();
     // localStorage.setItem("downloadCount", downloadCount.toString());
   };
 
@@ -142,11 +143,22 @@ const MusicContent = () => {
           <p>{loading && <Loader />}</p>
         )}
       </div>
+      {/* {!mp3Data?.downloadCount.length === 0 ? (
+        <div className="text-center">
+          <p>
+            Total Number of Downloads:{" "}
+            <strong style={{ color: "darkblue" }}>
+              {mp3Data?.downloadCount}
+            </strong>
+          </p>
+        </div>
+      ) : null} */}
       <div className="text-center">
-        {" "}
         <p>
           Total Number of Downloads:{" "}
-          <strong style={{ color: "darkblue" }}>{mp3Data.downloadCount}</strong>
+          <strong style={{ color: "darkblue" }}>
+            {mp3Data?.downloadCount}
+          </strong>
         </p>
       </div>
     </>

@@ -5,14 +5,14 @@ import AdminVideoCreate from "./AdminScreen/AdminVideo/AdminVideoCreate";
 import AdminViewVideo from "./AdminScreen/AdminVideo/AdminViewVideo";
 import "./App.css";
 import HomePage from "./pages/Home/HomePage";
-import MusicDetails from "./screens/MusicDetailsScreen/MusicDetails";
-import MusicVideoDetails from "./screens/MusicVideoDetails/MusicVideoDetail";
+
 import ContactUs from "./pages/ContactUs/ContactUs";
 import AllMusic from "./pages/AllMusicPage/AllMusic";
 import AllVideo from "./pages/AllVideos/AllVideo";
 import AdminUpdateMusic from "./AdminScreen/AdminMusic/AdminUpdateMusic/AdminUpdateMusic";
 import AdminUpdateVideo from "./AdminScreen/AdminVideo/AdminUpdate";
-
+import MusicDetails from "./screens/MusicDetailsScreen/MusicDetails";
+import MusicVideoDetails from "./screens/MusicVideoDetails/MusicVideoDetail";
 function App() {
   return (
     <div>
