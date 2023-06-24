@@ -122,7 +122,7 @@ const MusicContent = () => {
               style={{ justifyContent: "center" }}
             >
               {" "}
-              <audio src={mp3Data?.filepath} controls />
+              <audio src={mp3Data?.filepath} name={mp3Data?.title} controls />
             </div>
             <div
               className="d-flex mt-5 mb-5 "
@@ -138,12 +138,20 @@ const MusicContent = () => {
                 Download Mp3
               </Button>
             </div>
+            <div className="text-center">
+              <p>
+                Total Number of Downloads:{" "}
+                <strong style={{ color: "darkblue" }}>
+                  {mp3Data?.downloadCount}
+                </strong>
+              </p>
+            </div>
           </div>
         ) : (
           <p>{loading && <Loader />}</p>
         )}
       </div>
-      {/* {!mp3Data?.downloadCount.length === 0 ? (
+      {/* {!mp3Data?.downloadCount.length == 0 ? (
         <div className="text-center">
           <p>
             Total Number of Downloads:{" "}
@@ -153,14 +161,6 @@ const MusicContent = () => {
           </p>
         </div>
       ) : null} */}
-      <div className="text-center">
-        <p>
-          Total Number of Downloads:{" "}
-          <strong style={{ color: "darkblue" }}>
-            {mp3Data?.downloadCount}
-          </strong>
-        </p>
-      </div>
     </>
   );
 };

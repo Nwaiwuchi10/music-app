@@ -112,15 +112,17 @@ const AdminViewVideo = () => {
               <>
                 <tr key={usery._id}>
                   <td data-label="S.img">
-                    <img
-                      src={usery?.image}
-                      alt="jj"
-                      style={{
-                        width: "80px",
-                        height: "8vh",
-                        objectFit: "contain",
-                      }}
-                    />
+                    <Link to={`/edithImageVideo/${usery._id}`}>
+                      <img
+                        src={usery?.image}
+                        alt="jj"
+                        style={{
+                          width: "80px",
+                          height: "8vh",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </Link>
                   </td>
 
                   <td data-label="S.artist">{usery?.artist}</td>

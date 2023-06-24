@@ -250,6 +250,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        multiline
                         rows={4}
                         id="outlined-required"
                         label="Decription "

@@ -25,7 +25,7 @@ const AdminCreateMusic = () => {
   const [genre, setGenre] = useState("");
   const [category, setCategory] = useState("");
   const [filepath, setFilepath] = useState("");
-  const [recommendSong, setRecommendSong] = useState("");
+  const [recommendSong, setRecommendSong] = useState(false);
   const [album, setAlbum] = useState("");
   const [year, setYear] = useState("");
   const [loading, setLoading] = useState(false);
@@ -256,7 +256,8 @@ const AdminCreateMusic = () => {
                       <TextField
                         className="input-label-input-divs"
                         required
-                        rows={4}
+                        multiline
+                        rows={6}
                         id="outlined-required"
                         label="Decription "
                         type="text"

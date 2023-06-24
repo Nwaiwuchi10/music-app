@@ -13,6 +13,8 @@ import AdminUpdateMusic from "./AdminScreen/AdminMusic/AdminUpdateMusic/AdminUpd
 import AdminUpdateVideo from "./AdminScreen/AdminVideo/AdminUpdate";
 import MusicDetails from "./screens/MusicDetailsScreen/MusicDetails";
 import MusicVideoDetails from "./screens/MusicVideoDetails/MusicVideoDetail";
+import UpdateMusicImageCover from "./AdminScreen/AdminMusic/AdminUpdateMusic/UpdateMusicImageCover";
+import UpdateMusicImage from "./AdminScreen/AdminVideo/UpdateMusicImage";
 function App() {
   return (
     <div>
@@ -26,6 +28,8 @@ function App() {
         <Route path="/ViewMusic" element={<AdminGetMusic />} />
         <Route path="/ViewVideo" element={<AdminViewVideo />} />
         <Route path="/mp3-download/:title" element={<MusicDetails />} />
+        <Route path="/edithImage/:id" element={<UpdateMusicImageCover />} />
+        <Route path="/edithImageVideo/:id" element={<UpdateMusicImage />} />
         <Route path="/edithMusic/:id" element={<AdminUpdateMusic />} />
         <Route path="/edithVideo/:id" element={<AdminUpdateVideo />} />
         <Route path="/mp4-download/:title" element={<MusicVideoDetails />} />

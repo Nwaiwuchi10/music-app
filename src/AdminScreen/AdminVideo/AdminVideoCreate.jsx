@@ -19,7 +19,7 @@ import { getMusicVideoApi, getMusicsVideoApi } from "../../data/Apis";
 const AdminVideoCreate = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-
+  const [videoDownload, setVideoDownload] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [artist, setArtist] = useState("");
@@ -58,14 +58,14 @@ const AdminVideoCreate = () => {
     });
   };
   //////music file
-  const handleAudioChange = (event) => {
+  const handleVideoChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.readAsDataURL(file);
 
     reader.onload = () => {
-      setFilepath(reader.result);
+      setVideoDownload(reader.result);
     };
   };
   //////
@@ -81,6 +81,7 @@ const AdminVideoCreate = () => {
       album: album,
       genre: genre,
       filepath: filepath,
+      videoDownload: videoDownload,
       recommendSong: recommendSong,
       category: category,
       brand: brand,
@@ -104,7 +105,7 @@ const AdminVideoCreate = () => {
         setSuccess(false);
         if (res.data) {
           setTitle("");
-
+          setVideoDownload("");
           setDescription("");
           setBrand("");
           setArtist("");
@@ -261,6 +262,7 @@ const AdminVideoCreate = () => {
                       <TextField
                         className="input-label-input-divs"
                         required
+                        multiline
                         rows={4}
                         id="outlined-required"
                         label="Decription "
@@ -288,7 +290,6 @@ const AdminVideoCreate = () => {
                       </FormGroup>
                     </div>
                     <div className="col-md-6 mb-4">
-                      {/* <label className="">Music File</label> */}
                       <TextField
                         className="input-label-input-divs"
                         required
@@ -296,8 +297,6 @@ const AdminVideoCreate = () => {
                         label="Youtube Video Link "
                         type="text"
                         onChange={(e) => setFilepath(e.target.value)}
-                        // onChange={handleAudioChange}
-                        //   defaultValue="Match Day"
                       />
                     </div>
                     <div className="col-md-6 mb-4">
@@ -313,7 +312,17 @@ const AdminVideoCreate = () => {
                         //   defaultValue="Match Day"
                       />
                     </div>
-
+                    <div className="col-md-6 mb-4">
+                      <TextField
+                        className="input-label-input-divs"
+                        id="outlined-required"
+                        label="Upload Video "
+                        type="file"
+                        multiple
+                        accept="video/*"
+                        onChange={handleVideoChange}
+                      />
+                    </div>
                     {loading ? (
                       <CircularIndeterminate />
                     ) : (

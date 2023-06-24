@@ -254,6 +254,7 @@ const AdminUpdateVideo = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        multiline
                         rows={4}
                         id="outlined-required"
                         label="Decription "
@@ -293,6 +294,16 @@ const AdminUpdateVideo = () => {
                       />
                     </div>
                     <div className="col-md-6 mb-4">
+                      <TextField
+                        className="input-label-input-divs"
+                        required
+                        id="outlined-required"
+                        label="Youtube Video Link "
+                        type="text"
+                        onChange={(e) => setFilepath(e.target.value)}
+                      />
+                    </div>
+                    {/* <div className="col-md-6 mb-4">
                       <label className="">Music File</label>
                       <TextField
                         className="input-label-input-divs"
@@ -302,7 +313,7 @@ const AdminUpdateVideo = () => {
                         onChange={handleAudioChange}
                         //   defaultValue="Match Day"
                       />
-                    </div>
+                    </div> */}
                     {loading ? (
                       <CircularIndeterminate />
                     ) : (

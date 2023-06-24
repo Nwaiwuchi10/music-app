@@ -26,12 +26,14 @@ const MusicVideoContent = () => {
 
     fetchPosts();
   }, []);
-
+  // if (mp3Data?.videoDownload.length === 0) {
+  //   return <div></div>;
+  // }
   const handleDownload = () => {
     // You can use the HTML5 `download` attribute to download the MP3 file
     const downloadLink = document.createElement("a");
-    downloadLink.href = mp3Data?.filepath;
-    downloadLink.download = `${mp3Data.title}.mp3`;
+    downloadLink.href = mp3Data?.videoDownload;
+    downloadLink.download = `${mp3Data.title}.mp4`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -88,7 +90,7 @@ const MusicVideoContent = () => {
                 justifyContent: "center",
               }}
             >
-              <h5>Donwload & Listen below</h5>
+              <h5>Watch Video</h5>
             </div>
             <div
               className="d-flex mt-5 mb-5 "
@@ -105,19 +107,20 @@ const MusicVideoContent = () => {
                 allowfullscreen
               ></iframe>
             </div>
+
             <div
               className="d-flex mt-5 mb-5 "
               style={{ justifyContent: "center" }}
             >
               {" "}
-              {/* <Button
+              <Button
                 variant="contained"
                 onClick={handleDownload}
                 style={{ height: "7vh" }}
               >
                 {" "}
                 Download Mp4
-              </Button> */}
+              </Button>
             </div>
           </div>
         ) : (
