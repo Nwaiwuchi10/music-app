@@ -182,10 +182,7 @@ function AdminLayout(props) {
             color="#171744"
             style={{ marginLeft: "20px" }}
           >
-            <Link
-              to="/AdminDasboard"
-              style={{ color: "#171744", textDecoration: "none" }}
-            >
+            <Link to="/" style={{ color: "#171744", textDecoration: "none" }}>
               Admin DashBoard
             </Link>
           </Typography>

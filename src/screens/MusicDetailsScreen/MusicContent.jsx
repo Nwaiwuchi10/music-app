@@ -4,17 +4,19 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/Loading/Loader";
 import "./MusicContent.css";
-import { MusicDownloadCountApi, musicAllApi } from "../../data/Apis";
-
+import {
+  MusicDownloadCountApi,
+  getMusicDetailsApi,
+  musicAllApi,
+} from "../../data/Apis";
+import { Typewriter } from "react-simple-typewriter";
 const MusicContent = () => {
   const navigate = useNavigate();
-  const { title } = useParams();
+  const { artist, title } = useParams();
 
   const data = JSON.parse(localStorage.getItem("PostId"));
   const [mp3Data, setMp3Data] = useState(null);
-  // const [downloadCounts, setDownloadCounts] = useState(
-  //   parseInt(localStorage.getItem("downloadCount")) || 0
-  // );
+  const [displayLyrics, setDisplayLyrics] = useState(false);
   const [downloadCount, setDownloadCount] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -29,16 +31,18 @@ const MusicContent = () => {
       // const foundData = data.find((item) => item.artist === artist);
       setMp3Data(data);
       setLoading(false);
+
       setError(false);
     };
 
     fetchPosts();
   }, []);
+
   // useEffect(() => {
   //   // Update localStorage whenever the download count changes
   //   localStorage.setItem("downloadCounts", downloadCounts.toString());
   // }, [downloadCounts]);
-
+  const formattedLyrics = mp3Data?.lyrics;
   const handleUpdateCount = async () => {
     const data = {
       downloadCount: downloadCount,
@@ -50,19 +54,35 @@ const MusicContent = () => {
       .catch((error) => console.error(error));
     setDownloadCount("");
   };
-
   const handleDownload = () => {
-    // You can use the HTML5 `download` attribute to download the MP3 file
     const downloadLink = document.createElement("a");
     downloadLink.href = mp3Data?.filepath;
-    downloadLink.download = `${mp3Data.title}.mp3`;
+    downloadLink.download = `${mp3Data.artist}-${mp3Data.title}.mp3`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
     // setDownloadCounts((prevCount) => prevCount + 1);
     handleUpdateCount();
-    // localStorage.setItem("downloadCount", downloadCount.toString());
   };
+  const isTitleInDescription = () => {
+    if (mp3Data && mp3Data.artist.replace(/_/g, " ") && mp3Data.description) {
+      return mp3Data.description.includes(mp3Data.artist.replace(/_/g, " "));
+    }
+    return false;
+  };
+
+  const Lyricshow = () => {
+    setDisplayLyrics(true);
+  };
+  // const handleDownloads = () => {
+  //   if (mp3Data.filepath) {
+  //     const url = URL.createObjectURL(mp3Data?.filepath);
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.download = renamedFileName;
+  //     link.click();
+  //   }
+  // };
 
   return (
     <>
@@ -81,7 +101,7 @@ const MusicContent = () => {
               className="text-center color-grey mb-5"
               style={{ color: "grey", fontSize: "large" }}
             >
-              <span>{mp3Data.artist} </span>
+              <span>{mp3Data.artist.replace(/_/g, " ")} </span>
               <span>{mp3Data.title.replace(/_/g, " ")} </span>
               <span>MP3 Download</span>
             </div>
@@ -102,8 +122,8 @@ const MusicContent = () => {
                   textAlign: "center",
                 }}
               >
-                <span>{mp3Data.artist} </span>
-                <span>{mp3Data.title} </span>:{" "}
+                <span>{mp3Data.artist.replace(/_/g, " ")} </span> -
+                <span>{mp3Data.title.replace(/_/g, " ")} </span>:{" "}
                 <span>{mp3Data.description}</span>
               </div>
             </div>
@@ -117,12 +137,61 @@ const MusicContent = () => {
             >
               <h5>Donwload & Listen below</h5>
             </div>
+            {displayLyrics ? (
+              <div
+                style={{
+                  color: "green",
+                  fontFamily: "cursive",
+                  fontStyle: "oblique",
+                }}
+              >
+                <span style={{ color: "black", marginRight: "10px" }}>
+                  <strong>Song Lyrics:</strong>
+                </span>
+                <span>
+                  <pre>
+                    <Typewriter
+                      words={[formattedLyrics]}
+                      cursor
+                      deleteSpeed={10}
+                      typeSpeed={70}
+                      delaySpeed={1000}
+                      loop={false}
+                    />
+                  </pre>
+                </span>
+              </div>
+            ) : null}
+
+            <>
+              {!mp3Data?.lyrics ? null : (
+                <div
+                  onClick={Lyricshow}
+                  type="button"
+                  style={{
+                    color: "red",
+                    textDecorationLine: "underline",
+                    textDecorationColor: "brown",
+                    textAlign: "center",
+                  }}
+                >
+                  Show song lyrics
+                </div>
+              )}
+            </>
+
             <div
               className="d-flex mt-5 mb-5 "
               style={{ justifyContent: "center" }}
             >
               {" "}
-              <audio src={mp3Data?.filepath} name={mp3Data?.title} controls />
+              <audio
+                src={mp3Data?.filepath.replace(
+                  `${mp3Data?.artist}-${mp3Data?.title}`
+                )}
+                name={mp3Data?.title}
+                controls
+              ></audio>
             </div>
             <div
               className="d-flex mt-5 mb-5 "

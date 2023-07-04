@@ -64,7 +64,7 @@ const Footer = () => {
                     }}
                   />
                   <div className="jbi-foot">
-                    TodaysMuzic is your home for African Music
+                    TodaysMuzik is your home for African Music
                   </div>
                 </div>
                 {/* <!-- Grid column --> */}

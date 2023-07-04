@@ -103,7 +103,8 @@ const Sidebar = ({ i, show }) => {
             if (searchTitle === "") {
               return value;
             } else if (
-              value.artist.toLowerCase().includes(searchTitle.toLowerCase())
+              value.artist.toLowerCase().includes(searchTitle.toLowerCase()) &&
+              value.title.toLowerCase().includes(searchTitle.toLowerCase())
             ) {
               return value;
             }
@@ -160,7 +161,7 @@ const Sidebar = ({ i, show }) => {
                 {" "}
                 <CardSm
                   cover={item.image}
-                  name={item.artist}
+                  name={item.artist.replace(/_/g, " ")}
                   tag={item.title.replace(/_/g, " ")}
                   i={i}
                 />

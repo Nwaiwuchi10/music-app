@@ -16,6 +16,12 @@
   object-fit: cover;
   align-items: center;
 }
+.highlight {
+  color: red;
+}
+.higy {
+  color: gold;
+}
 @media screen and (max-width: 768px) {
   .w-div-img {
     display: flex;

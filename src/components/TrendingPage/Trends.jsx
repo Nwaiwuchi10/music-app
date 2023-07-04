@@ -87,7 +87,10 @@ const Trends = () => {
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
-                      to={`/mp4-download/${item.title.replace(/\s+/g, "_")}`}
+                      to={`/mp4-download/${item.artist.replace(
+                        /\s+/g,
+                        "_"
+                      )}/${item.title.replace(/\s+/g, "_")}`}
                       style={{ textDecoration: "none" }}
                     >
                       <CardVideoLarge

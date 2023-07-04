@@ -25,6 +25,7 @@ const AdminUpdateMusic = () => {
   const [artist, setArtist] = useState("");
   const [brand, setBrand] = useState("");
   const [genre, setGenre] = useState("");
+  const [lyrics, setLyrics] = useState("");
   const [category, setCategory] = useState("");
   const [filepath, setFilepath] = useState("");
   const [recommendSong, setRecommendSong] = useState("");
@@ -84,6 +85,7 @@ const AdminUpdateMusic = () => {
       category: category,
       brand: brand,
       year: year,
+      lyrics: lyrics,
       description: description,
     };
 
@@ -113,7 +115,7 @@ const AdminUpdateMusic = () => {
           setImage("");
           setGenre("");
           setYear("");
-
+          setLyrics("");
           console.log(res.data);
           toast.success("post sucessful");
           navigate("/");
@@ -257,6 +259,20 @@ const AdminUpdateMusic = () => {
                         type="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+
+                        //   defaultValue="Match Day"
+                      />
+                    </div>
+                    <div className="col-md-6 mb-4">
+                      <TextField
+                        className="input-label-input-divs"
+                        multiline
+                        rows={4}
+                        id="outlined-required"
+                        label="Lyrics "
+                        type="text"
+                        value={lyrics}
+                        onChange={(e) => setLyrics(e.target.value)}
 
                         //   defaultValue="Match Day"
                       />

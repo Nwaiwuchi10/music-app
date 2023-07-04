@@ -27,12 +27,15 @@ function App() {
         <Route path="/CreateVideo" element={<AdminVideoCreate />} />
         <Route path="/ViewMusic" element={<AdminGetMusic />} />
         <Route path="/ViewVideo" element={<AdminViewVideo />} />
-        <Route path="/mp3-download/:title" element={<MusicDetails />} />
+        <Route path="/mp3-download/:artist/:title" element={<MusicDetails />} />
         <Route path="/edithImage/:id" element={<UpdateMusicImageCover />} />
         <Route path="/edithImageVideo/:id" element={<UpdateMusicImage />} />
         <Route path="/edithMusic/:id" element={<AdminUpdateMusic />} />
         <Route path="/edithVideo/:id" element={<AdminUpdateVideo />} />
-        <Route path="/mp4-download/:title" element={<MusicVideoDetails />} />
+        <Route
+          path="/mp4-download/:artist/:title"
+          element={<MusicVideoDetails />}
+        />
       </Routes>
     </div>
   );

@@ -33,7 +33,7 @@ const MusicVideoContent = () => {
     // You can use the HTML5 `download` attribute to download the MP3 file
     const downloadLink = document.createElement("a");
     downloadLink.href = mp3Data?.videoDownload;
-    downloadLink.download = `${mp3Data.title}.mp4`;
+    downloadLink.download = `$${mp3Data.artist}-${mp3Data.title}.mp4`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -90,24 +90,36 @@ const MusicVideoContent = () => {
                 justifyContent: "center",
               }}
             >
-              <h5>Watch Video</h5>
+              <h5>Watch Video & Download Video</h5>
             </div>
-            <div
-              className="d-flex mt-5 mb-5 "
-              style={{ justifyContent: "center" }}
-            >
-              {" "}
-              <iframe
-                width="460"
-                height="215"
-                src={mp3Data.filepath}
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-
+            {mp3Data?.filepath ? (
+              <div
+                className="d-flex mt-5 mb-5 "
+                style={{ justifyContent: "center" }}
+              >
+                {" "}
+                <iframe
+                  width="460"
+                  height="215"
+                  src={mp3Data.filepath}
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            ) : null}
+            {mp3Data?.videoDownload ? (
+              <div
+                className="d-flex mt-5 mb-5 "
+                style={{ justifyContent: "center" }}
+              >
+                <video width="310" height="215" controls>
+                  <source src={mp3Data?.videoDownload} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            ) : null}
             <div
               className="d-flex mt-5 mb-5 "
               style={{ justifyContent: "center" }}

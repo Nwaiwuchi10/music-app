@@ -27,7 +27,7 @@ const AdminVideoCreate = () => {
   const [genre, setGenre] = useState("");
   const [category, setCategory] = useState("");
   const [filepath, setFilepath] = useState("");
-  const [recommendSong, setRecommendSong] = useState("");
+  const [recommendSong, setRecommendSong] = useState(false);
   const [album, setAlbum] = useState("");
   const [year, setYear] = useState("");
   const [loading, setLoading] = useState(false);
@@ -289,16 +289,7 @@ const AdminVideoCreate = () => {
                         />
                       </FormGroup>
                     </div>
-                    <div className="col-md-6 mb-4">
-                      <TextField
-                        className="input-label-input-divs"
-                        required
-                        id="outlined-required"
-                        label="Youtube Video Link "
-                        type="text"
-                        onChange={(e) => setFilepath(e.target.value)}
-                      />
-                    </div>
+
                     <div className="col-md-6 mb-4">
                       <label className="">Cover Photo</label>
                       <TextField
@@ -310,6 +301,16 @@ const AdminVideoCreate = () => {
                         accept=".jpeg, .png, .jpg, "
                         onChange={(e) => uploadimage(e)}
                         //   defaultValue="Match Day"
+                      />
+                    </div>
+                    <div className="col-md-6 mb-4">
+                      <TextField
+                        className="input-label-input-divs"
+                        // required
+                        id="outlined-required"
+                        label="Youtube Embed Link "
+                        type="text"
+                        onChange={(e) => setFilepath(e.target.value)}
                       />
                     </div>
                     <div className="col-md-6 mb-4">

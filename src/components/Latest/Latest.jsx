@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import "../Pagination/Pagination.css";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { Button } from "@mui/material";
-
+import "./Latest.css";
 const Latest = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
@@ -45,7 +45,10 @@ const Latest = () => {
   return (
     <>
       <section className="treading hero">
-        <Title title="Latest Musics" />
+        <div className="mg-latest">
+          <Title title="Latest Music" />
+        </div>
+
         {/* <Slider {...settings}> */}
         {loading ? (
           <Loader />
@@ -58,12 +61,15 @@ const Latest = () => {
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
-                      to={`/mp3-download/${item.title.replace(/\s+/g, "_")}`}
+                      to={`/mp3-download/${item.artist.replace(
+                        /\s+/g,
+                        "_"
+                      )}/${item.title.replace(/\s+/g, "_")}`}
                       style={{ textDecoration: "none" }}
                     >
                       <CardLarge
                         cover={item.image}
-                        name={item.artist}
+                        name={item.artist.replace(/_/g, " ")}
                         // tag={item.title}
                         tag={item.title.replace(/_/g, " ")}
                         style={{ color: "inherit" }}

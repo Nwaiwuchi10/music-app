@@ -83,7 +83,7 @@
 }
 @media screen and (max-width: 768px) {
   .hero-div-main {
-    display: flex;
+    display: none;
     justify-content: center;
     width: 100%;
     flex-direction: column;
