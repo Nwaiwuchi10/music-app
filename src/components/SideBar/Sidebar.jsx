@@ -18,7 +18,7 @@ const Sidebar = ({ i, show }) => {
   const [searchTitle, setSearchTitle] = useState("");
   const [poster, setPoster] = useState([]);
   const [posters, setPosters] = useState([]);
-  const [filtered, setFiltered] = useState("");
+  const [filtered, setFiltered] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(musicAllApi);
@@ -61,6 +61,7 @@ const Sidebar = ({ i, show }) => {
             if (searchTitle === "") {
               return value;
             } else if (
+              value.title.toLowerCase().includes(searchTitle.toLowerCase()) ||
               value.artist.toLowerCase().includes(searchTitle.toLowerCase())
             ) {
               return value;
@@ -72,7 +73,10 @@ const Sidebar = ({ i, show }) => {
                 <>
                   <div>
                     <Link
-                      to={`/mp3-download/${usery?.title.replace(/\s+/g, "_")}`}
+                      to={`/mp3-download/${usery?.artist.replace(
+                        /\s+/g,
+                        "_"
+                      )}/${usery?.title.replace(/\s+/g, "_")}`}
                       style={{ textDecoration: "none" }}
                     >
                       <div className="img sm-img-img-card-small">
@@ -103,8 +107,8 @@ const Sidebar = ({ i, show }) => {
             if (searchTitle === "") {
               return value;
             } else if (
-              value.artist.toLowerCase().includes(searchTitle.toLowerCase()) &&
-              value.title.toLowerCase().includes(searchTitle.toLowerCase())
+              value.title.toLowerCase().includes(searchTitle.toLowerCase()) ||
+              value.artist.toLowerCase().includes(searchTitle.toLowerCase())
             ) {
               return value;
             }

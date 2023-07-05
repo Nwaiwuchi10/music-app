@@ -64,13 +64,14 @@ const MusicContent = () => {
     // setDownloadCounts((prevCount) => prevCount + 1);
     handleUpdateCount();
   };
-  const isTitleInDescription = () => {
-    if (mp3Data && mp3Data.artist.replace(/_/g, " ") && mp3Data.description) {
-      return mp3Data.description.includes(mp3Data.artist.replace(/_/g, " "));
-    }
-    return false;
-  };
 
+  const formatDescription = (description, title) => {
+    const regex = new RegExp(title, "gi");
+    return description.replace(
+      regex,
+      `<span class="title-highlights">${title}</span>`
+    );
+  };
   const Lyricshow = () => {
     setDisplayLyrics(true);
   };
@@ -124,7 +125,18 @@ const MusicContent = () => {
               >
                 <span>{mp3Data.artist.replace(/_/g, " ")} </span> -
                 <span>{mp3Data.title.replace(/_/g, " ")} </span>:{" "}
-                <span>{mp3Data.description}</span>
+                <span>
+                  <h6 className="mt-2">
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: formatDescription(
+                          mp3Data.description,
+                          mp3Data.title
+                        ),
+                      }}
+                    ></p>
+                  </h6>{" "}
+                </span>
               </div>
             </div>
             <div

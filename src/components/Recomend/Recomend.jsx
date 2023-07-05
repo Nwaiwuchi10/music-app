@@ -52,7 +52,10 @@ const Recomend = () => {
               .map((item, i) => (
                 <>
                   <Link
-                    to={`/mp3-download/${item.title.replace(/\s+/g, "_")}`}
+                    to={`/mp3-download/${item.artist.replace(
+                      /\s+/g,
+                      "_"
+                    )}/${item.title.replace(/\s+/g, "_")}`}
                     style={{ textDecoration: "none" }}
                   >
                     <CardSmall

@@ -16,11 +16,11 @@
   object-fit: cover;
   align-items: center;
 }
-.highlight {
+.title-highlights {
   color: red;
 }
-.higy {
-  color: gold;
+.content-details .description .highlight {
+  color: #ff0000; /* Replace with your desired color */
 }
 @media screen and (max-width: 768px) {
   .w-div-img {
