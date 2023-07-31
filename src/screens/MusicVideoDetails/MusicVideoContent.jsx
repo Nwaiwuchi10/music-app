@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/Loading/Loader";
 // import "./MusicContent.css";
 const MusicVideoContent = () => {
-  const { title } = useParams();
+  const { artist, title } = useParams();
 
   const data = JSON.parse(localStorage.getItem("PostVideoId"));
   const [mp3Data, setMp3Data] = useState(null);
@@ -16,7 +16,8 @@ const MusicVideoContent = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(
-        `https://todaysmusic.onrender.com/api/mp4/mp4/${title}`
+        `https://todaysmusic.onrender.com/api/mp4/mp4/${title}`,
+        { dataType: "blob" }
       );
       console.log(data);
       setMp3Data(data);
@@ -46,17 +47,22 @@ const MusicVideoContent = () => {
           <div>
             <div className="text-center mt-5 mb-5">
               <h4 className="ity">
-                {mp3Data.artist}-{mp3Data.title.replace(/_/g, " ")}{" "}
+                {mp3Data.artist.replace(/_/g, " ")}-
+                {mp3Data.title.replace(/_/g, " ")}{" "}
               </h4>
             </div>
             <div className="w-div-img">
-              <img src={mp3Data.image} alt="dddj" className="img-content-div" />
+              <img
+                src={mp3Data.image}
+                alt="music video cover"
+                className="img-content-div"
+              />
             </div>
             <div
               className="text-center color-grey mb-5"
               style={{ color: "grey", fontSize: "large" }}
             >
-              <span>{mp3Data.artist} </span>
+              <span>{mp3Data.artist.replace(/_/g, " ")} </span>
               <span>{mp3Data.title.replace(/_/g, " ")} </span>
               <span>MP3 Download</span>
             </div>
@@ -77,9 +83,11 @@ const MusicVideoContent = () => {
                   textAlign: "center",
                 }}
               >
-                <span>{mp3Data.artist} </span>
-                <span>{mp3Data.title} </span>:{" "}
-                <span>{mp3Data.description}</span>
+                <span>{mp3Data.artist.replace(/_/g, " ")} </span>
+                <span>{mp3Data.title.replace(/_/g, " ")} </span>:{" "}
+                <span>
+                  <p>{mp3Data.description}</p>
+                </span>
               </div>
             </div>
             <div

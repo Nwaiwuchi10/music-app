@@ -15,7 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/system";
-import { FaTimes, FaVideo } from "react-icons/fa";
+import { FaSearch, FaTimes, FaVideo } from "react-icons/fa";
 import { GiMusicalScore } from "react-icons/gi";
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -90,7 +90,14 @@ function Header(props) {
               Videos{" "}
             </Link>
           </ListItem>
-
+          {/* <ListItem>
+            <Link
+              to="/uploadmusic"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <GiMusicalScore style={{ marginRight: "5px" }} /> Upload Music
+            </Link>
+          </ListItem> */}
           <ListItem>
             {" "}
             <SiHatenabookmark style={{ marginRight: "5px" }} />
@@ -159,6 +166,9 @@ function Header(props) {
                 </Typography>
               </div>
             </Link>
+            <Link to="/search" style={{ color: "inherit" }}>
+              <FaSearch className="fa-display" />
+            </Link>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <Typography
                 variant="h6"
@@ -197,7 +207,15 @@ function Header(props) {
                       Videos
                     </Link>
                   </ListItem>
-
+                  {/* <ListItem>
+                    <Link
+                      to="/uploadmusic"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <span>Upload</span>
+                      <span style={{ marginLeft: "5px" }}>Music</span>
+                    </Link>
+                  </ListItem> */}
                   <ListItem>
                     {" "}
                     <span>About</span>

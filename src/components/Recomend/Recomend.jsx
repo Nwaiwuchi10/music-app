@@ -60,7 +60,7 @@ const Recomend = () => {
                   >
                     <CardSmall
                       cover={item.image}
-                      name={item.artist}
+                      name={item.artist.replace(/_/g, " ")}
                       tag={item.title.replace(/_/g, " ")}
                       // tag={item.title}
                       i={i}

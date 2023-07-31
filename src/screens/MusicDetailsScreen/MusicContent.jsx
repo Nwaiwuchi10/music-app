@@ -1,15 +1,22 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/Loading/Loader";
+import Axios from "axios";
+import FileDownload from "js-file-download";
+import ReactAudioPlayer from "react-audio-player";
 import "./MusicContent.css";
+// import FileDownload from "js-file-download";
 import {
   MusicDownloadCountApi,
   getMusicDetailsApi,
   musicAllApi,
 } from "../../data/Apis";
 import { Typewriter } from "react-simple-typewriter";
+import Message from "../../components/Messages/Message";
+import CardSmall from "../../components/Cards/CardSmall";
+
 const MusicContent = () => {
   const navigate = useNavigate();
   const { artist, title } = useParams();
@@ -25,7 +32,9 @@ const MusicContent = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(
-        `https://todaysmusic.onrender.com/api/music/mp3/${title}`
+        `https://todaysmusic.onrender.com/api/music/mp3/${title}`,
+
+        { dataType: "blob" } // Set the response type to 'blob'
       );
       console.log(data);
       // const foundData = data.find((item) => item.artist === artist);
@@ -36,7 +45,7 @@ const MusicContent = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [title]);
 
   // useEffect(() => {
   //   // Update localStorage whenever the download count changes
@@ -54,13 +63,31 @@ const MusicContent = () => {
       .catch((error) => console.error(error));
     setDownloadCount("");
   };
+  const downloads = (e) => {
+    e.preventDefault();
+    Axios({
+      url: `https://todaysmusic.onrender.com/api/music/mp3/${title}`,
+      method: "GET",
+      responseType: "blob",
+    }).then((res) => {
+      console.log(res);
+      const downloadLink = document.createElement("a");
+      FileDownload(
+        (downloadLink.href = mp3Data?.filepath),
+        `${mp3Data.artist}-${mp3Data.title}.mp3`
+      );
+    });
+  };
+
   const handleDownload = () => {
     const downloadLink = document.createElement("a");
     downloadLink.href = mp3Data?.filepath;
+    downloadLink.dataType = "blob";
     downloadLink.download = `${mp3Data.artist}-${mp3Data.title}.mp3`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+
     // setDownloadCounts((prevCount) => prevCount + 1);
     handleUpdateCount();
   };
@@ -92,11 +119,16 @@ const MusicContent = () => {
           <div>
             <div className="text-center mt-5 mb-5">
               <h4 className="ity">
-                {mp3Data.artist}-{mp3Data.title.replace(/_/g, " ")}{" "}
+                {mp3Data.artist.replace(/_/g, " ")}-
+                {mp3Data.title.replace(/_/g, " ")}{" "}
               </h4>
             </div>
             <div className="w-div-img">
-              <img src={mp3Data.image} alt="dddj" className="img-content-div" />
+              <img
+                src={mp3Data.image}
+                alt="music cover"
+                className="img-content-div"
+              />
             </div>
             <div
               className="text-center color-grey mb-5"
@@ -196,14 +228,23 @@ const MusicContent = () => {
               className="d-flex mt-5 mb-5 "
               style={{ justifyContent: "center" }}
             >
-              {" "}
-              <audio
+              {/* <ReactAudioPlayer
                 src={mp3Data?.filepath.replace(
                   `${mp3Data?.artist}-${mp3Data?.title}`
                 )}
                 name={mp3Data?.title}
+                // autoPlay
                 controls
-              ></audio>
+                type="audio/mpeg/MP3/MP4"
+              /> */}
+              <audio
+                src={mp3Data?.filepath.replace(
+                  `${mp3Data?.artist}-${mp3Data?.title}`
+                )}
+                // type="audio/mpeg"
+                // name={mp3Data?.title}
+                controls
+              />
             </div>
             <div
               className="d-flex mt-5 mb-5 "
@@ -212,6 +253,7 @@ const MusicContent = () => {
               {" "}
               <Button
                 variant="contained"
+                // onClick={(e) => downloads(e)}
                 onClick={handleDownload}
                 style={{ height: "7vh" }}
               >
@@ -232,16 +274,6 @@ const MusicContent = () => {
           <p>{loading && <Loader />}</p>
         )}
       </div>
-      {/* {!mp3Data?.downloadCount.length == 0 ? (
-        <div className="text-center">
-          <p>
-            Total Number of Downloads:{" "}
-            <strong style={{ color: "darkblue" }}>
-              {mp3Data?.downloadCount}
-            </strong>
-          </p>
-        </div>
-      ) : null} */}
     </>
   );
 };

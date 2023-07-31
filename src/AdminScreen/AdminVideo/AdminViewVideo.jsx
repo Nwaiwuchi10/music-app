@@ -125,9 +125,14 @@ const AdminViewVideo = () => {
                     </Link>
                   </td>
 
-                  <td data-label="S.artist">{usery?.artist}</td>
+                  <td data-label="S.artist">
+                    {usery?.artist.replace(/_/g, " ")}
+                  </td>
 
-                  <td data-label="S.title"> {usery.title}</td>
+                  <td data-label="S.title">
+                    {" "}
+                    {usery.title.replace(/_/g, " ")}
+                  </td>
                   <td data-label="S.category"> {usery.category}</td>
                   <td data-label="S.genre"> {usery.genre}</td>
                   <td data-label="S.Recommend">

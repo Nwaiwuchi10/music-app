@@ -102,8 +102,9 @@ const AdminGetMusic = () => {
               <th>IMAGE</th>
               <th>ARTIST</th>
               <th>TITLE</th>
-              <th>CATEGORY</th>
-              <th>GENRE</th>
+              <th>Genre</th>
+              <th>Category</th>
+              <th>Download Count</th>
               <th>Recommend Song</th>
             </tr>
           </thead>
@@ -125,12 +126,17 @@ const AdminGetMusic = () => {
                     </Link>
                   </td>
 
-                  <td data-label="S.artist">{usery?.artist}</td>
+                  <td data-label="S.artist">
+                    {usery?.artist.replace(/_/g, " ")}
+                  </td>
 
-                  <td data-label="S.title"> {usery.title}</td>
-                  <td data-label="S.category"> {usery.category}</td>
-                  <td data-label="S.genre"> {usery.genre}</td>
-                  <td data-label="S.Recommend"> {usery.recommendSong}</td>
+                  <td data-label="S.title">
+                    {" "}
+                    {usery?.title.replace(/_/g, " ")}
+                  </td>
+                  <td data-label="S.genre"> {usery?.genre}</td>
+                  <td data-label="S.category"> {usery?.category}</td>
+                  <td data-label="S.download count"> {usery?.downloadCount}</td>
 
                   <td data-label="S.edith/delete">
                     <Link to={`/edithMusic/${usery._id}`}>

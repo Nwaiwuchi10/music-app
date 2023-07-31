@@ -98,12 +98,17 @@ export const Hero = () => {
             {poster?.slice(0, 4).map((item) => (
               <div className="box hero-min2-div " key={item.id}>
                 <Link
-                  to={`/mp4-download/${item.title.replace(/\s+/g, "_")}`}
+                  to={`/mp4-download/${item.artist.replace(
+                    /\s+/g,
+                    "_"
+                  )}/${item.title.replace(/\s+/g, "_")}`}
                   style={{ textDecoration: "none" }}
                 >
                   <img src={item.image} alt="cover" className="img-min2-div" />
                   <div className="hero-page">
-                    <h3 className="hero-min-text">{item.artist}</h3>
+                    <h3 className="hero-min-text">
+                      {item.artist.replace(/_/g, " ")}
+                    </h3>
                     <span className="hero-min-text-span">
                       {item.title.replace(/_/g, " ")}
                     </span>

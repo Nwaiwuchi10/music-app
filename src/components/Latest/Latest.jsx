@@ -64,7 +64,7 @@ const Latest = () => {
                       to={`/mp3-download/${item.artist.replace(
                         /\s+/g,
                         "_"
-                      )}/${item.title.replace(/\s+/g, "_")}`}
+                      )}/${item.title.replace(/\s+/g, "_")}/`}
                       style={{ textDecoration: "none" }}
                     >
                       <CardLarge

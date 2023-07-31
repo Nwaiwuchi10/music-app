@@ -1,4 +1,5 @@
 export const musicAllApi = "https://todaysmusic.onrender.com/api/music/";
+
 export const getMusicApi = "https://todaysmusic.onrender.com/api/music/";
 export const getMusicDetailsApi =
   "https://todaysmusic.onrender.com/api/music/mp3/";
@@ -17,3 +18,4 @@ export const MusicVideoUpdateApi =
   "https://todaysmusic.onrender.com/api/mp4/update/";
 export const MusicVideoUpdateImageApi =
   "https://todaysmusic.onrender.com/api/mp4/update/image/";
+export const uploadmusicApi = "http://localhost:5000/api/mp3";
