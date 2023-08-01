@@ -20,6 +20,7 @@ import { Helmet } from "react-helmet";
 import Sitemap from "./sitemap";
 import Search from "./components/Search/Search";
 import UploadMusic from "./screens/UploadMusicScreen/UploadMusic";
+import SocialHandles from "./components/Socialhandles/SocialHandles";
 function App() {
   const { pathname } = useLocation();
 
@@ -45,7 +46,7 @@ function App() {
         />
         <Sitemap />
       </Helmet>
-
+      <SocialHandles />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<Search />} />

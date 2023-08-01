@@ -11,6 +11,7 @@ import "../Pagination/Pagination.css";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { Button } from "@mui/material";
 import "./Latest.css";
+import SocialHandles from "../Socialhandles/SocialHandles";
 const Latest = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
