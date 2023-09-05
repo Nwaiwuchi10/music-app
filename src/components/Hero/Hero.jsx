@@ -12,7 +12,10 @@ import { hero1, hero2 } from "../../data/data";
 import Message from "../Messages/Message";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getMusicsVideoApi } from "../../data/Apis";
+import LazyLoad from "react-lazy-load";
+import PopUnder from "../Popunder/PopUnder";
 
 function SampleNextArrow(props) {
   const { onClick } = props;
@@ -96,39 +99,53 @@ export const Hero = () => {
         ) : (
           <div className="hero-div-min-sec">
             {poster?.slice(0, 4).map((item) => (
-              <div className="box hero-min2-div " key={item.id}>
-                <Link
-                  to={`/mp4-download/${item.artist.replace(
-                    /\s+/g,
-                    "_"
-                  )}/${item.title.replace(/\s+/g, "_")}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <img src={item.image} alt="cover" className="img-min2-div" />
-                  <div className="hero-page">
-                    <h3 className="hero-min-text">
-                      {item.artist.replace(/_/g, " ")}
-                    </h3>
-                    <span className="hero-min-text-span">
-                      {item.title.replace(/_/g, " ")}
-                    </span>
+              <>
+                <LazyLoad>
+                  <div className="box hero-min2-div " key={item.id}>
+                    <Link
+                      to={`/mp4-download/${item.artist.replace(
+                        /\s+/g,
+                        "_"
+                      )}/${item.title.replace(/\s+/g, "_")}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <img
+                        src={item.image}
+                        alt="cover"
+                        className="img-min2-div"
+                        effect="blur"
+                      />
+
+                      <div className="hero-page">
+                        <h3 className="hero-min-text">
+                          {item.artist.replace(/_/g, " ")}
+                        </h3>
+                        <span className="hero-min-text-span">
+                          {item.title.replace(/_/g, " ")}
+                        </span>
+                      </div>
+                      <div className="icon-overlaye ">
+                        <BsPlayCircle size={45} className="show" />
+                        {/* <AiFillPlayCircle size={50} className="hide icon-circle-play" /> */}
+                      </div>
+                      {/* <div className="overlay absolute bottom-0 right-0 text-white">
+<div className="flex p-3">
+  <AiOutlineHeart size={22} className="mx-3" />
+  <BsThreeDots size={22} />
+</div>
+</div> */}
+                    </Link>
                   </div>
-                  <div className="icon-overlaye ">
-                    <BsPlayCircle size={45} className="show" />
-                    {/* <AiFillPlayCircle size={50} className="hide icon-circle-play" /> */}
-                  </div>
-                  {/* <div className="overlay absolute bottom-0 right-0 text-white">
-                <div className="flex p-3">
-                  <AiOutlineHeart size={22} className="mx-3" />
-                  <BsThreeDots size={22} />
-                </div>
-              </div> */}
-                </Link>
-              </div>
+                </LazyLoad>
+              </>
             ))}
           </div>
         )}
       </div>
+      {/* <!-- Ezoic - sidebar_bottom - sidebar_bottom --> */}
+      <div id="ezoic-pub-ad-placeholder-103"> </div>
+      {/* <!-- End Ezoic - sidebar_bottom - sidebar_bottom --> */}
+      {/* <PopUnder /> */}
     </section>
   );
 };

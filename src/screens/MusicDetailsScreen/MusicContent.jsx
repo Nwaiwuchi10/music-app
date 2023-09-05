@@ -7,15 +7,20 @@ import Axios from "axios";
 import FileDownload from "js-file-download";
 import ReactAudioPlayer from "react-audio-player";
 import "./MusicContent.css";
+import advert from "../../assets/Images/avert.jpeg";
 // import FileDownload from "js-file-download";
 import {
   MusicDownloadCountApi,
   getMusicDetailsApi,
   musicAllApi,
 } from "../../data/Apis";
-import { Typewriter } from "react-simple-typewriter";
+
 import Message from "../../components/Messages/Message";
 import CardSmall from "../../components/Cards/CardSmall";
+import Sitemap from "../../sitemap";
+import { Helmet } from "react-helmet";
+import ShareMusic from "../../components/ShareMusic/ShareMusic";
+import MusicPlayer from "../MusicPlayer/MusicPlayer";
 
 const MusicContent = () => {
   const navigate = useNavigate();
@@ -102,18 +107,14 @@ const MusicContent = () => {
   const Lyricshow = () => {
     setDisplayLyrics(true);
   };
-  // const handleDownloads = () => {
-  //   if (mp3Data.filepath) {
-  //     const url = URL.createObjectURL(mp3Data?.filepath);
-  //     const link = document.createElement("a");
-  //     link.href = url;
-  //     link.download = renamedFileName;
-  //     link.click();
-  //   }
-  // };
 
   return (
     <>
+      {/* <Helmet>
+        <title>
+          {mp3Data.artist}-{mp3Data.title}{" "}
+        </title>
+      </Helmet> */}
       <div className="Music-content-main-div">
         {mp3Data ? (
           <div>
@@ -122,6 +123,9 @@ const MusicContent = () => {
                 {mp3Data.artist.replace(/_/g, " ")}-
                 {mp3Data.title.replace(/_/g, " ")}{" "}
               </h4>
+            </div>
+            <div>
+              <ShareMusic share={mp3Data} />
             </div>
             <div className="w-div-img">
               <img
@@ -158,7 +162,7 @@ const MusicContent = () => {
                 <span>{mp3Data.artist.replace(/_/g, " ")} </span> -
                 <span>{mp3Data.title.replace(/_/g, " ")} </span>:{" "}
                 <span>
-                  <h6 className="mt-2">
+                  <div className="mt-2">
                     <p
                       dangerouslySetInnerHTML={{
                         __html: formatDescription(
@@ -167,7 +171,7 @@ const MusicContent = () => {
                         ),
                       }}
                     ></p>
-                  </h6>{" "}
+                  </div>{" "}
                 </span>
               </div>
             </div>
@@ -181,54 +185,16 @@ const MusicContent = () => {
             >
               <h5>Donwload & Listen below</h5>
             </div>
-            {displayLyrics ? (
+
+            <div>
+              <MusicPlayer sounds={mp3Data} />
+            </div>
+            {mp3Data?.audiofile ? (
               <div
-                style={{
-                  color: "green",
-                  fontFamily: "cursive",
-                  fontStyle: "oblique",
-                }}
+                className="d-flex mt-5 mb-5 "
+                style={{ justifyContent: "center" }}
               >
-                <span style={{ color: "black", marginRight: "10px" }}>
-                  <strong>Song Lyrics:</strong>
-                </span>
-                <span>
-                  <pre>
-                    <Typewriter
-                      words={[formattedLyrics]}
-                      cursor
-                      deleteSpeed={10}
-                      typeSpeed={70}
-                      delaySpeed={1000}
-                      loop={false}
-                    />
-                  </pre>
-                </span>
-              </div>
-            ) : null}
-
-            <>
-              {!mp3Data?.lyrics ? null : (
-                <div
-                  onClick={Lyricshow}
-                  type="button"
-                  style={{
-                    color: "red",
-                    textDecorationLine: "underline",
-                    textDecorationColor: "brown",
-                    textAlign: "center",
-                  }}
-                >
-                  Show song lyrics
-                </div>
-              )}
-            </>
-
-            <div
-              className="d-flex mt-5 mb-5 "
-              style={{ justifyContent: "center" }}
-            >
-              {/* <ReactAudioPlayer
+                {/* <ReactAudioPlayer
                 src={mp3Data?.filepath.replace(
                   `${mp3Data?.artist}-${mp3Data?.title}`
                 )}
@@ -237,14 +203,46 @@ const MusicContent = () => {
                 controls
                 type="audio/mpeg/MP3/MP4"
               /> */}
-              <audio
-                src={mp3Data?.filepath.replace(
-                  `${mp3Data?.artist}-${mp3Data?.title}`
-                )}
-                // type="audio/mpeg"
-                // name={mp3Data?.title}
-                controls
-              />
+                <audio
+                  src={mp3Data?.audiofile.replace(
+                    `${mp3Data?.artist}-${mp3Data?.title}`
+                  )}
+                  type="audio/mp3"
+                  // type="audio/mpeg"
+                  // name={mp3Data?.title}
+                  controls
+                />
+              </div>
+            ) : null}
+            {/* {mp3Data?.filepath ? (
+              <div
+                className="d-flex mt-5 mb-5 "
+                style={{ justifyContent: "center" }}
+              >
+               
+                <audio
+                  src={mp3Data?.filepath.replace(
+                    `${mp3Data?.artist}-${mp3Data?.title}`
+                  )}
+                  type="audio/mp3"
+                
+                  controls
+                />
+              </div>
+            ) : null} */}
+            {mp3Data?.filepath ? (
+              <div
+                className="d-flex mb-5 "
+                style={{ justifyContent: "center" }}
+              >
+                <video controls>
+                  <source src={mp3Data?.filepath} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            ) : null}
+            <div className="mt-5 mb-5 advert-div">
+              <img src={advert} alt="img" className="advert-img" />
             </div>
             <div
               className="d-flex mt-5 mb-5 "
@@ -261,14 +259,14 @@ const MusicContent = () => {
                 Download Mp3
               </Button>
             </div>
-            <div className="text-center">
+            {/* <div className="text-center">
               <p>
                 Total Number of Downloads:{" "}
                 <strong style={{ color: "darkblue" }}>
                   {mp3Data?.downloadCount}
                 </strong>
               </p>
-            </div>
+            </div> */}
           </div>
         ) : (
           <p>{loading && <Loader />}</p>

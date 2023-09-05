@@ -7,12 +7,17 @@ import Trends from "../../components/TrendingPage/Trends";
 import Container from "react-bootstrap/Container";
 import Latest from "../../components/Latest/Latest";
 import Recomend from "../../components/Recomend/Recomend";
+import PopUnder from "../../components/Popunder/PopUnder";
 
 const HomePage = () => {
   return (
     <div>
+      {/* <!-- Ezoic - top_of_page - top_of_page --> */}
+      <div id="ezoic-pub-ad-placeholder-104"> </div>
+      {/* <!-- End Ezoic - top_of_page - top_of_page --> */}
       <Header />
       <Hero />
+
       {/* <Trends /> */}
 
       <LayoutSideBar>

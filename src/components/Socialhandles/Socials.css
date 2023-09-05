@@ -33,16 +33,36 @@
   .centered-icon-divs {
     height: 5.5vh;
     width: 106%;
-    top: 1px;
+    margin-top: 6px;
     cursor: pointer;
     position: relative;
   }
   .centered-icon-divss {
     height: 5.5vh;
     width: 145%;
-
+    margin-top: 4px;
     cursor: pointer;
     right: 6px;
     position: relative;
+  }
+}
+@media screen and (max-width: 480px) {
+  .centered-icon-container {
+    display: block;
+    position: fixed;
+    top: 50%;
+    right: 6%;
+
+    transform: translateX(50%);
+    z-index: 9999;
+    /* border: 1px solid gainsboro;
+    background-color: whitesmoke;
+    width: 25%;
+    height: 21vh; */
+  }
+}
+@media screen and (min-width: 480px) {
+  .centered-icon-container {
+    display: none;
   }
 }

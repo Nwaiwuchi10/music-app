@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./Pagination.css";
+import { useLocation } from "react-router-dom";
 
 const Pagination = ({
   totalPosts,
@@ -13,6 +14,11 @@ const Pagination = ({
   for (let i = 1; i <= Math.ceil(totalPosts / itemsPerPage); i++) {
     pages.push(i);
   }
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="pagination">

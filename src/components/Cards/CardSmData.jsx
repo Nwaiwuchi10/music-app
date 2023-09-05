@@ -1,6 +1,8 @@
 import React from "react";
 import { AiFillPlayCircle, AiOutlineHeart } from "react-icons/ai";
 import { BsPlayCircle, BsThreeDots } from "react-icons/bs";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./CardSm.css";
 const CardSmData = ({ cover, name, tag, i, show }) => {
   return (
@@ -8,7 +10,12 @@ const CardSmData = ({ cover, name, tag, i, show }) => {
       <div className="sm-card-small-main-div" key={i}>
         {show && <div className="sm-show-card-small">{i + 1}</div>}
         <div className="img sm-img-img-card-small">
-          <img src={cover} alt="cover" className="sm-img-card-sm" />
+          <LazyLoadImage
+            src={cover}
+            alt="cover"
+            className="sm-img-card-sm"
+            effect="blur"
+          />
           {/* <div className="overlay icon absolute top-3 left-2 text-white ">
             <BsPlayCircle size={45} className="show" />
             <AiFillPlayCircle

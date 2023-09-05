@@ -16,6 +16,8 @@ export const getMusicsVideoApi =
 export const getMusicVideoApi = "https://todaysmusic.onrender.com/api/mp4/";
 export const MusicVideoUpdateApi =
   "https://todaysmusic.onrender.com/api/mp4/update/";
+export const musicCategoryApi =
+  "https://todaysmusic.onrender.com/api/music/category/DJMIX";
 export const MusicVideoUpdateImageApi =
   "https://todaysmusic.onrender.com/api/mp4/update/image/";
 export const uploadmusicApi = "http://localhost:5000/api/mp3";

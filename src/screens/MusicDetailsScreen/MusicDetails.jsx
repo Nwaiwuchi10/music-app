@@ -5,13 +5,14 @@ import Header from "../../components/Header/Header";
 import Recomend from "../../components/Recomend/Recomend";
 import LayoutSideBar from "../../components/SideBar/LayoutSideBar";
 import MusicContent from "./MusicContent";
+import SocialHandles from "../../components/Socialhandles/SocialHandles";
 // import Container from "react-bootstrap/Container";
 
 const MusicDetails = () => {
   return (
     <>
       <Header />
-
+      <SocialHandles />
       <LayoutSideBar>
         <Container>
           <MusicContent />

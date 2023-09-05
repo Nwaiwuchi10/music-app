@@ -125,7 +125,8 @@ const Footer = () => {
                     Owerri Imo State
                   </p>
                   <p>
-                    <i class="fas fa-envelope mr-3"></i> djnchrys@gmail.com
+                    <i class="fas fa-envelope mr-3"></i>{" "}
+                    todaysmuziksite@gmail.com
                   </p>
                   <p>
                     <i class="fas fa-phone mr-3"></i> +234816757488

@@ -21,6 +21,7 @@ import Sitemap from "./sitemap";
 import Search from "./components/Search/Search";
 import UploadMusic from "./screens/UploadMusicScreen/UploadMusic";
 import SocialHandles from "./components/Socialhandles/SocialHandles";
+import DJMix from "./pages/DJMIX/DJMix";
 function App() {
   const { pathname } = useLocation();
 
@@ -29,8 +30,8 @@ function App() {
   }, [pathname]);
 
   useEffect(() => {
-    // Initialize Google Analytics with your tracking ID
-    ReactGA.initialize("5768118828");
+    // Initialize Google Analytics with your tracking ID 5768118828
+    ReactGA.initialize("5984105243");
 
     // Send a pageview event to Google Analytics
     ReactGA.pageview(window.location.pathname);
@@ -46,7 +47,7 @@ function App() {
         />
         <Sitemap />
       </Helmet>
-      <SocialHandles />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<Search />} />
@@ -58,6 +59,7 @@ function App() {
         <Route path="/ViewMusic" element={<AdminGetMusic />} />
         {/* <Route path="/uploadmusic" element={<UploadMusic />} /> */}
         <Route path="/ViewVideo" element={<AdminViewVideo />} />
+        <Route path="/dj-mixtape" element={<DJMix />} />
         <Route
           path="/mp3-download/:artist/:title/"
           element={<MusicDetails />}

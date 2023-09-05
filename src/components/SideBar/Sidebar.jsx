@@ -155,7 +155,7 @@ const Sidebar = ({ i, show }) => {
               return value;
             }
           })
-          .slice(0, 10)
+
           .map((item, i) => (
             <div className="mb-3">
               <Link

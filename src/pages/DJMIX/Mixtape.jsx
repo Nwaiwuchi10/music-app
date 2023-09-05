@@ -1,19 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Title from "../../common/Title";
-import { getMusicApi, getMusicVideoApi, musicAllApi } from "../../data/Apis";
-import { news } from "../../data/data";
-import { CardLarge } from "../Cards/CardLarge";
-import Message from "../Messages/Message";
+
 import Loader from "../../components/Loading/Loader";
+
 import { Link, useLocation } from "react-router-dom";
-import "../Pagination/Pagination.css";
+
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { Button } from "@mui/material";
-import "./Latest.css";
-import SocialHandles from "../Socialhandles/SocialHandles";
+
 import LazyLoad from "react-lazy-load";
-const Latest = () => {
+import { musicAllApi } from "../../data/Apis";
+import Title from "../../common/Title";
+import Message from "../../components/Messages/Message";
+import { CardLarge } from "../../components/Cards/CardLarge";
+const Mixtape = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -23,8 +23,7 @@ const Latest = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
   const [poster, setPoster] = useState([]);
-  const [posters, setPosters] = useState([]);
-  const [filtered, setFiltered] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
   const [viewPost, setViewPost] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
@@ -33,19 +32,23 @@ const Latest = () => {
     const fetchPosts = async () => {
       const { data } = await axios.get(musicAllApi);
       console.log(data);
+
       setPoster(data);
-      setLoading(false);
-      setError(false);
-
-      localStorage.setItem("PostId", JSON.stringify(data));
     };
-
+    setLoading(false);
+    setError(false);
     fetchPosts();
   }, []);
-
+  useEffect(() => {
+    // Filter the data based on genre "afrobeat"
+    const filtered = poster.filter((item) => item.category === "DJMIX");
+    setFilteredData(filtered);
+    console.log(filtered);
+  }, [poster]);
   function handlePageChange(newPage) {
     setCurrentPage(newPage);
   }
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const posts = poster?.slice(indexOfFirstItem, indexOfLastItem);
@@ -54,7 +57,7 @@ const Latest = () => {
     <>
       <section className="treading hero">
         <div className="mg-latest">
-          <Title title="Latest Music" />
+          <Title title="DJ Mixtapes" />
         </div>
 
         {/* <Slider {...settings}> */}
@@ -65,9 +68,8 @@ const Latest = () => {
         ) : (
           <div className="trends-div-plus">
             <>
-              
-              {posts?.map((item, i) => (
-                <LazyLoad>
+              {/* <LazyLoad> */}
+              {filteredData.map((item, i) => (
                 <div className="" key={i}>
                   <div className="mb-4">
                     <Link
@@ -87,7 +89,6 @@ const Latest = () => {
                     </Link>
                   </div>
                 </div>
-                </LazyLoad>
               ))}
               {/* </LazyLoad> */}
             </>
@@ -121,4 +122,4 @@ const Latest = () => {
   );
 };
 
-export default Latest;
+export default Mixtape;

@@ -13,6 +13,7 @@ import { Button, Pagination } from "@mui/material";
 import { CardVideoLarge } from "../Cards/CardVideoLarge";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { getMusicsVideoApi } from "../../data/Apis";
+import LazyLoad from "react-lazy-load";
 const Trends = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
@@ -84,25 +85,27 @@ const Trends = () => {
           <div className="trends-div-plus">
             <>
               {posts?.map((item, i) => (
-                <div className="" key={i}>
-                  <div className="mb-4">
-                    <Link
-                      to={`/mp4-download/${item.artist.replace(
-                        /\s+/g,
-                        "_"
-                      )}/${item.title.replace(/\s+/g, "_")}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <CardVideoLarge
-                        cover={item.image}
-                        name={item.artist}
-                        tag={item.title.replace(/_/g, " ")}
-                        // tag={item.title}
-                        style={{ color: "inherit" }}
-                      />
-                    </Link>
+                <LazyLoad>
+                  <div className="" key={i}>
+                    <div className="mb-4">
+                      <Link
+                        to={`/mp4-download/${item.artist.replace(
+                          /\s+/g,
+                          "_"
+                        )}/${item.title.replace(/\s+/g, "_")}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <CardVideoLarge
+                          cover={item.image}
+                          name={item.artist}
+                          tag={item.title.replace(/_/g, " ")}
+                          // tag={item.title}
+                          style={{ color: "inherit" }}
+                        />
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </LazyLoad>
               ))}
             </>
           </div>

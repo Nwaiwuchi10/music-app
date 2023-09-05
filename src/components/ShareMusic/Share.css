@@ -1,0 +1,46 @@
+.share-border {
+  width: 70%;
+  height: 8vh;
+  border: 1px solid gainsboro;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.socialmedia {
+  width: 5%;
+  height: 5vh;
+  cursor: pointer;
+}
+.socialmedia-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media screen and (max-width: 768px) {
+  .share-border {
+    width: 90%;
+    height: 8vh;
+  }
+  .socialmedia {
+    width: 10%;
+    height: 5vh;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 480px) {
+  .share-border {
+    width: 90%;
+    height: 8vh;
+  }
+  .socialmedia {
+    width: 10%;
+    height: 5vh;
+    cursor: pointer;
+  }
+  .socialmedia-icon {
+    object-fit: contain;
+  }
+}

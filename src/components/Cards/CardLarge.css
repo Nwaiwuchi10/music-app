@@ -6,6 +6,14 @@
 
   /* w-full h-full object-cover rounded-md */
 }
+.LazyLoad {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.is-visible {
+  opacity: 1;
+}
 .min-large-card-div {
   height: 40vh;
   width: 95%;

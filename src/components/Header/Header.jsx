@@ -15,7 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/system";
-import { FaSearch, FaTimes, FaVideo } from "react-icons/fa";
+import { FaMix, FaSearch, FaTimes, FaVideo } from "react-icons/fa";
 import { GiMusicalScore } from "react-icons/gi";
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -90,14 +90,17 @@ function Header(props) {
               Videos{" "}
             </Link>
           </ListItem>
-          {/* <ListItem>
+          <ListItem>
             <Link
-              to="/uploadmusic"
+              to="/dj-mixtape"
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <GiMusicalScore style={{ marginRight: "5px" }} /> Upload Music
+              {" "}
+              <FaMix style={{ marginRight: "5px" }} />
+              DJ-Mix
             </Link>
-          </ListItem> */}
+          </ListItem>
+
           <ListItem>
             {" "}
             <SiHatenabookmark style={{ marginRight: "5px" }} />
@@ -205,6 +208,15 @@ function Header(props) {
                     >
                       {" "}
                       Videos
+                    </Link>
+                  </ListItem>
+                  <ListItem>
+                    <Link
+                      to="/dj-mixtape"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <span>DJ</span>
+                      <span style={{ marginLeft: "5px" }}>Mix</span>
                     </Link>
                   </ListItem>
                   {/* <ListItem>

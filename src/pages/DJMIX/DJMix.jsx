@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "../../components/Header/Header";
+import SocialHandles from "../../components/Socialhandles/SocialHandles";
 import LayoutSideBar from "../../components/SideBar/LayoutSideBar";
 import { Container } from "react-bootstrap";
-import Latest from "../../components/Latest/Latest";
 import Recomend from "../../components/Recomend/Recomend";
 import Footer from "../../components/Footer/Footer";
-import SocialHandles from "../../components/Socialhandles/SocialHandles";
+import Latest from "../../components/Latest/Latest";
+import Mixtape from "./Mixtape";
 
-const AllMusic = () => {
+const DJMix = () => {
   return (
     <div>
       <Header />
@@ -15,7 +16,7 @@ const AllMusic = () => {
       <LayoutSideBar>
         <Container>
           <div style={{ paddingTop: "50px" }}>
-            <Latest />
+            <Mixtape />
 
             <Recomend />
           </div>
@@ -27,4 +28,4 @@ const AllMusic = () => {
   );
 };
 
-export default AllMusic;
+export default DJMix;

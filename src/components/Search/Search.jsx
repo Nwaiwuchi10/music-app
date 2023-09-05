@@ -14,6 +14,7 @@ import { Container } from "react-bootstrap";
 import Latest from "../Latest/Latest";
 import Trends from "../TrendingPage/Trends";
 import Recomend from "../Recomend/Recomend";
+import SocialHandles from "../Socialhandles/SocialHandles";
 
 const Search = ({ i, show }) => {
   const [searchTitle, setSearchTitle] = useState("");
@@ -45,7 +46,7 @@ const Search = ({ i, show }) => {
   return (
     <div>
       <Header />
-
+      <SocialHandles />
       <LayoutSideBar>
         <Container>
           <div className="pt-5 pb-5">
