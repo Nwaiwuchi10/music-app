@@ -67,7 +67,7 @@ const AdminGetMusic = () => {
   };
   const handleDelete = async (id) => {
     await axios.delete(
-      `https://todaysmusic.onrender.com/api/music/delete/${id}`
+      `https://todaysmuziks.todaysmuzik.com.ng/api/music/delete/${id}`
     );
 
     setPoster(poster.filter((p) => p._id !== usery._id));

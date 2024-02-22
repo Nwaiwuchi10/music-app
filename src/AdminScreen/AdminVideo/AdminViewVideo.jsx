@@ -66,7 +66,9 @@ const AdminViewVideo = () => {
     }
   };
   const handleDelete = async (id) => {
-    await axios.delete(`https://todaysmusic.onrender.com/api/mp4/delete/${id}`);
+    await axios.delete(
+      `https://todaysmuziks.todaysmuzik.com.ng/api/mp4/delete/${id}`
+    );
 
     setPoster(poster.filter((p) => p._id !== usery._id));
     navigate("/ViewMusic");

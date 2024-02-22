@@ -6,29 +6,29 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
+import CircularIndeterminate from "../../components/Loading/Progress";
+import { getMusicApi, musicAllApi } from "../../data/Apis";
 
-import "../AdminCreateMusic.css";
+import "../../AdminScreen/AdminMusic/AdminCreateMusic.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
-import { MusicUpdateApi, MusicVideoUpdateApi } from "../../../data/Apis";
-import AdminLayout from "../../AdminDashboard/AdminLayout";
-import CircularIndeterminate from "../../../components/Loading/Progress";
-const AdminUpdateMusic = () => {
-  const { id } = useParams();
+import { useNavigate } from "react-router-dom";
+import Uploadmusic from "./Uploadmusic";
+const MusicUpload = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const [audiomacklink, setAudiomacklink] = useState("");
+
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [lyrics, setLyrics] = useState("");
   const [artist, setArtist] = useState("");
+  const [audiomacklink, setAudiomacklink] = useState("");
   const [brand, setBrand] = useState("");
   const [genre, setGenre] = useState("");
-  const [lyrics, setLyrics] = useState("");
   const [category, setCategory] = useState("");
   const [filepath, setFilepath] = useState("");
-  const [recommendSong, setRecommendSong] = useState("");
+  const [recommendSong, setRecommendSong] = useState(false);
   const [album, setAlbum] = useState("");
   const [year, setYear] = useState("");
   const [loading, setLoading] = useState(false);
@@ -76,6 +76,7 @@ const AdminUpdateMusic = () => {
     setLoading(true);
     const data = {
       title: title,
+
       image: image,
       artist: artist,
       album: album,
@@ -98,14 +99,14 @@ const AdminUpdateMusic = () => {
     };
 
     axios
-      .put(MusicUpdateApi + id, data, headers)
+      .post(getMusicApi, data, headers)
 
       .then((res) => {
         console.log(res.data);
         setLoading(false);
         if (res.data) {
           setTitle("");
-          setAudiomacklink("");
+
           setDescription("");
           setBrand("");
           setArtist("");
@@ -116,6 +117,7 @@ const AdminUpdateMusic = () => {
           setImage("");
           setGenre("");
           setYear("");
+          setAudiomacklink("");
           setLyrics("");
           console.log(res.data);
           toast.success("post sucessful");
@@ -132,7 +134,7 @@ const AdminUpdateMusic = () => {
       });
   };
   return (
-    <AdminLayout>
+    <Uploadmusic>
       <section class="h-100 h-custom" style={{ backgroundColor: "white" }}>
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -151,7 +153,7 @@ const AdminUpdateMusic = () => {
                   /> */}
                 <div class="card-body p-4 p-md-5">
                   <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 d-flex justify-content-center">
-                    Update a Music Blog
+                    Create a Music Blog
                   </h3>
                   <p
                     class="d-flex justify-content-center"
@@ -163,6 +165,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         id="outlined-required"
                         label="Title "
                         type="text"
@@ -175,6 +178,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         rows={4}
                         id="outlined-required"
                         label="Artist "
@@ -188,6 +192,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         rows={4}
                         id="outlined-required"
                         label="Brand Name or Record Label "
@@ -201,6 +206,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         rows={4}
                         id="outlined-required"
                         label="Genre "
@@ -214,6 +220,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         rows={4}
                         id="outlined-required"
                         label="Category "
@@ -227,6 +234,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         rows={4}
                         id="outlined-required"
                         label="Album "
@@ -240,6 +248,7 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         rows={4}
                         id="outlined-required"
                         label="DATE"
@@ -253,8 +262,9 @@ const AdminUpdateMusic = () => {
                     <div className="col-md-6 mb-4">
                       <TextField
                         className="input-label-input-divs"
+                        required
                         multiline
-                        rows={4}
+                        rows={6}
                         id="outlined-required"
                         label="Decription "
                         type="text"
@@ -284,7 +294,7 @@ const AdminUpdateMusic = () => {
                         multiline
                         rows={4}
                         id="outlined-required"
-                        label="Audiomacklink "
+                        label="Audiomack Link "
                         type="text"
                         value={audiomacklink}
                         onChange={(e) => setAudiomacklink(e.target.value)}
@@ -292,26 +302,27 @@ const AdminUpdateMusic = () => {
                         //   defaultValue="Match Day"
                       />
                     </div>
-                    <div className="col-md-6 mb-4">
-                      <FormGroup>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              defaultChecked
-                              checked={recommendSong}
-                              onChange={(e) =>
-                                setRecommendSong(e.target.checked)
-                              }
-                            />
-                          }
-                          label="Recomend Song"
-                        />
-                      </FormGroup>
-                    </div>
+                    {/* <div className="col-md-6 mb-4">
+                        <FormGroup>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                defaultChecked
+                                checked={recommendSong}
+                                onChange={(e) =>
+                                  setRecommendSong(e.target.checked)
+                                }
+                              />
+                            }
+                            label="Recomend Song"
+                          />
+                        </FormGroup>
+                      </div> */}
                     <div className="col-md-6 mb-4">
                       <label className="">Cover Photo</label>
                       <TextField
                         className="input-label-input-divs"
+                        required
                         id="outlined-required"
                         type="file"
                         multiple
@@ -321,14 +332,12 @@ const AdminUpdateMusic = () => {
                       />
                     </div>
                     <div className="col-md-6 mb-4">
-                      <label className="">Music File</label>
+                      <label className="">Music File Link</label>
                       <TextField
                         className="input-label-input-divs"
+                        required
                         id="outlined-required"
-                        type="file"
-                        accept="audio/*"
-                        onChange={handleAudioChange}
-                        //   defaultValue="Match Day"
+                        type="text"
                       />
                     </div>
                     {loading ? (
@@ -344,7 +353,7 @@ const AdminUpdateMusic = () => {
                           type="submit"
                           variant="contained"
                         >
-                          Update
+                          Upload
                         </Button>
                         <ToastContainer />
                       </div>
@@ -356,8 +365,8 @@ const AdminUpdateMusic = () => {
           </div>
         </div>
       </section>
-    </AdminLayout>
+    </Uploadmusic>
   );
 };
 
-export default AdminUpdateMusic;
+export default MusicUpload;

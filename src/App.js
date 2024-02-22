@@ -22,6 +22,9 @@ import Search from "./components/Search/Search";
 import UploadMusic from "./screens/UploadMusicScreen/UploadMusic";
 import SocialHandles from "./components/Socialhandles/SocialHandles";
 import DJMix from "./pages/DJMIX/DJMix";
+import MusicUpload from "./pages/Uploadmusic/MusicUpload";
+import MusicUploads from "./screens/UploadYourSong/MusicUploads";
+import MusicvideoUpload from "./screens/UploadYourSong/Musicvideo";
 function App() {
   const { pathname } = useLocation();
 
@@ -54,6 +57,7 @@ function App() {
         <Route path="/Nchrys" element={<AdminCreateMusic />} />
         <Route path="/musics" element={<AllMusic />} />
         <Route path="/videos" element={<AllVideo />} />
+        <Route path="/upload-music" element={<MusicUpload />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/CreateVideo" element={<AdminVideoCreate />} />
         <Route path="/ViewMusic" element={<AdminGetMusic />} />
@@ -72,6 +76,8 @@ function App() {
           path="/mp4-download/:artist/:title"
           element={<MusicVideoDetails />}
         />
+        <Route path="/music-upload" element={<MusicUploads />} />
+        <Route path="/Create-Video-Blog" element={<MusicvideoUpload />} />
       </Routes>
     </div>
   );

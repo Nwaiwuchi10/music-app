@@ -16,7 +16,7 @@ const MusicVideoContent = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(
-        `https://todaysmusic.onrender.com/api/mp4/mp4/${title}`,
+        `https://todaysmuziks.todaysmuzik.com.ng/api/mp4/mp4/${title}`,
         { dataType: "blob" }
       );
       console.log(data);
@@ -39,7 +39,36 @@ const MusicVideoContent = () => {
     downloadLink.click();
     document.body.removeChild(downloadLink);
   };
+  const handleDownloads = async () => {
+    try {
+      const response = await axios.get(mp3Data?.videoDownload, {
+        responseType: "blob", // Important for binary data like audio files
+      });
 
+      // Create a temporary anchor element
+      const downloadLink = document.createElement("a");
+
+      // Create a Blob object from the binary data
+      const blob = new Blob([response.data], { type: "audio/mpeg" }); // Adjust the MIME type based on your audio file type
+
+      // Set the download link's href to the Blob object
+      downloadLink.href = window.URL.createObjectURL(blob);
+
+      // Set the download attribute to the desired file name
+      downloadLink.download = `${mp3Data.artist}-${mp3Data.title}.mp3`; // Adjust the file name accordingly
+
+      // Append the download link to the document
+      document.body.appendChild(downloadLink);
+
+      // Trigger a click on the download link
+      downloadLink.click();
+
+      // Remove the download link from the document
+      document.body.removeChild(downloadLink);
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
+  };
   return (
     <>
       <div className="Music-content-main-div">
@@ -135,7 +164,7 @@ const MusicVideoContent = () => {
               {" "}
               <Button
                 variant="contained"
-                onClick={handleDownload}
+                onClick={handleDownloads}
                 style={{ height: "7vh" }}
               >
                 {" "}

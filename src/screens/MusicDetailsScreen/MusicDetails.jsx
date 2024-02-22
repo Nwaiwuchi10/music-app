@@ -13,6 +13,7 @@ const MusicDetails = () => {
     <>
       <Header />
       <SocialHandles />
+
       <LayoutSideBar>
         <Container>
           <MusicContent />

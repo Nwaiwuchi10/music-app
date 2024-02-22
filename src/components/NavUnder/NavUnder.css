@@ -1,0 +1,15 @@
+.NavUnder-main-div {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .NavUnder-main-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 35px;
+    font-weight: 600;
+  }
+  .NavUnder-main-div div:hover {
+    color: red;
+  }
+}

@@ -1,0 +1,48 @@
+.telegram-border {
+  width: 84%;
+  height: 8vh;
+  display: flex;
+  justify-content:center;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  font-size: large;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+.telegram-border:hover {
+  color: white;
+}
+.telegram-icon {
+  align-items: center;
+  display: flex;
+  text-align: center;
+  margin-right: 10px;
+}
+@media screen and (max-width: 768px) {
+  .telegram-border {
+    width: 95%;
+    height: 8vh;
+  }
+}
+@media screen and (max-width: 480px) {
+  .telegram-border {
+    width: 95%;
+    height: 8vh;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    font-weight:600;
+  }
+  .telegram-icon {
+ 
+    margin-left: 3px;
+    margin-right: 0px;
+    margin-bottom: 2px;
+    margin-top:0px;
+  }
+}

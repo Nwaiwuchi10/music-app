@@ -100,7 +100,16 @@ function Header(props) {
               DJ-Mix
             </Link>
           </ListItem>
-
+          <ListItem>
+            <Link
+              to="/music-upload"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <span>Upload</span>
+              <span style={{ marginLeft: "5px" }}>Your</span>
+              <span style={{ marginLeft: "5px" }}>Song</span>
+            </Link>
+          </ListItem>
           <ListItem>
             {" "}
             <SiHatenabookmark style={{ marginRight: "5px" }} />
@@ -219,15 +228,16 @@ function Header(props) {
                       <span style={{ marginLeft: "5px" }}>Mix</span>
                     </Link>
                   </ListItem>
-                  {/* <ListItem>
+                  <ListItem>
                     <Link
-                      to="/uploadmusic"
+                      to="/music-upload"
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       <span>Upload</span>
-                      <span style={{ marginLeft: "5px" }}>Music</span>
+                      <span style={{ marginLeft: "5px" }}>Your</span>
+                      <span style={{ marginLeft: "5px" }}>Song</span>
                     </Link>
-                  </ListItem> */}
+                  </ListItem>
                   <ListItem>
                     {" "}
                     <span>About</span>

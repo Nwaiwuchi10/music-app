@@ -61,7 +61,7 @@
     height: 21vh; */
   }
 }
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 420px) {
   .centered-icon-container {
     display: none;
   }

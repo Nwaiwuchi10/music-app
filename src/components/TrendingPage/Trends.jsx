@@ -27,7 +27,9 @@ const Trends = () => {
   function handlePageChanges(newPages) {
     setCurrentPage(newPages);
   }
-
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get(getMusicsVideoApi);
@@ -120,7 +122,7 @@ const Trends = () => {
           <Button
             style={{ marginRight: "15px" }}
             variant="outlined"
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={() => handlePageChange(currentPage - 1, scrollToTop())}
           >
             <GoArrowLeft />
           </Button>
@@ -128,7 +130,7 @@ const Trends = () => {
           <Button
             style={{ marginLeft: "15px" }}
             variant="outlined"
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={() => handlePageChange(currentPage + 1, scrollToTop())}
           >
             <GoArrowRight />
           </Button>

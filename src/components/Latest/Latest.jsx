@@ -19,7 +19,9 @@ const Latest = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
   const [poster, setPoster] = useState([]);
@@ -65,28 +67,27 @@ const Latest = () => {
         ) : (
           <div className="trends-div-plus">
             <>
-              
               {posts?.map((item, i) => (
                 <LazyLoad>
-                <div className="" key={i}>
-                  <div className="mb-4">
-                    <Link
-                      to={`/mp3-download/${item.artist.replace(
-                        /\s+/g,
-                        "_"
-                      )}/${item.title.replace(/\s+/g, "_")}/`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <CardLarge
-                        cover={item.image}
-                        name={item.artist.replace(/_/g, " ")}
-                        // tag={item.title}
-                        tag={item.title.replace(/_/g, " ")}
-                        style={{ color: "inherit" }}
-                      />
-                    </Link>
+                  <div className="" key={i}>
+                    <div className="mb-4">
+                      <Link
+                        to={`/mp3-download/${item.artist.replace(
+                          /\s+/g,
+                          "_"
+                        )}/${item.title.replace(/\s+/g, "_")}/`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <CardLarge
+                          cover={item.image}
+                          name={item.artist.replace(/_/g, " ")}
+                          // tag={item.title}
+                          tag={item.title.replace(/_/g, " ")}
+                          style={{ color: "inherit" }}
+                        />
+                      </Link>
+                    </div>
                   </div>
-                </div>
                 </LazyLoad>
               ))}
               {/* </LazyLoad> */}
@@ -103,7 +104,7 @@ const Latest = () => {
           <Button
             style={{ marginRight: "15px" }}
             variant="outlined"
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={() => handlePageChange(currentPage - 1, scrollToTop())}
           >
             <GoArrowLeft />
           </Button>
@@ -111,7 +112,7 @@ const Latest = () => {
           <Button
             style={{ marginLeft: "15px" }}
             variant="outlined"
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={() => handlePageChange(currentPage + 1, scrollToTop())}
           >
             <GoArrowRight />
           </Button>

@@ -15,7 +15,9 @@ const Pagination = ({
     pages.push(i);
   }
   const { pathname } = useLocation();
-
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -27,7 +29,7 @@ const Pagination = ({
         return (
           <button
             key={index}
-            onClick={() => setCurrentPage(page)}
+            onClick={() => setCurrentPage(page, scrollToTop())}
             className={page === currentPage ? "active" : ""}
           >
             {page}
